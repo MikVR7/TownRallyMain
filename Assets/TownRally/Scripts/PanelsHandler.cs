@@ -1,48 +1,56 @@
+using Sirenix.OdinInspector;
+using Sirenix.Utilities;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TownRally
 {
-    internal class PanelsHandler : MonoBehaviour
+    internal class PanelsHandler : SerializedMonoBehaviour
     {
         internal enum PanelType
         {
-            Login = 0,
-            RallySelection = 1,
-            Rally = 2,
+            None = 0,
+            Login = 1,
+            RallySelection = 2,
+            StartScreen = 3,
+            RallyInfo = 4,
+            RallyMap = 5,
         }
 
         internal static EventIn_OnBtnPanelBack EventIn_OnBtnPanelBack = new EventIn_OnBtnPanelBack();
-        internal static EventIn_SetPanelBody EventIn_SetPanelBody = new EventIn_SetPanelBody();
+        internal static EventIn_SetPanel EventIn_SetPanel = new EventIn_SetPanel();
 
-        [SerializeField] private PanelLogin panelLogin = null;
-        [SerializeField] private PanelRallySelection panelRallySelection = null;
-        [SerializeField] private PanelRally panelRally = null;
+        [SerializeField] private Dictionary<PanelType, APanel> panels = new Dictionary<PanelType, APanel>();
 
         private PanelType currentPanel = PanelType.Login;
+        private List<PanelType> panelQueue = new List<PanelType>();
 
         internal void Init()
         {
-            this.panelLogin.Init();
-            this.panelRallySelection.Init();
-            this.panelRally.Init();
-            EventIn_OnBtnPanelBack.AddListener(OnBtnPanelBack);
-            EventIn_SetPanelBody.AddListener(SetPanelBody);
-            SetPanelBody(PanelType.Login);
+            this.panels.Keys.ForEach(i => this.panels[i].Init(i));
+            EventIn_OnBtnPanelBack.AddListenerSingle(OnBtnPanelBack);
+            EventIn_SetPanel.AddListenerSingle(SetPanel);
+            SetPanel(PanelType.Login);
         }
 
         private void OnBtnPanelBack()
         {
-            if(currentPanel == PanelType.Login) { SetPanelBody(PanelType.Login); }
-            else if(currentPanel == PanelType.RallySelection) { SetPanelBody(PanelType.Login); }
-            else if (currentPanel == PanelType.Rally) { SetPanelBody(PanelType.RallySelection); }
+            PanelType previousPanelType = this.panelQueue[this.panelQueue.Count - 2];
+            this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
+            this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
+            SetPanel(previousPanelType);
         }
 
-        private void SetPanelBody(PanelType panelType)
+        private void SetPanel(PanelType nextPanel)
         {
-            this.currentPanel = panelType;
-            this.panelLogin.gameObject.SetActive(panelType.Equals(PanelType.Login));
-            this.panelRallySelection.gameObject.SetActive(panelType.Equals(PanelType.RallySelection));
-            this.panelRally.gameObject.SetActive(panelType.Equals(PanelType.Rally));
+            this.currentPanel = nextPanel;
+            AddPanelToPanelQueue();
+            this.panels.Keys.ForEach(i => this.panels[i].SetActive(nextPanel.Equals(i)));
+        }
+
+        private void AddPanelToPanelQueue()
+        {
+            this.panelQueue.Add(this.currentPanel);
         }
     }
 }

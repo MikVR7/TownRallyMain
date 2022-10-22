@@ -1,17 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static TownRally.PanelsHandler;
 
 namespace TownRally
 {
-    internal class PanelRallySelection : MonoBehaviour
+    internal class PanelRallySelection : APanel
     {
         [SerializeField] private GameObject prefabLineRally = null;
         [SerializeField] private RectTransform rtContentHolder = null;
 
         private List<PanelRallySelectionLine> rallyLines = new List<PanelRallySelectionLine>();
 
-        internal void Init()
+        internal override void Init(PanelType panelType)
         {
+            base.Init(panelType);
             this.rallyLines.Clear();
             for(int i = 0; i < RalliesHandler.VarOut_GetRalliesCount(); i++)
             {

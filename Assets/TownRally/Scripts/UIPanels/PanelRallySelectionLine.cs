@@ -27,7 +27,7 @@ namespace TownRally
         {
             RalliesHandler.EventIn_SetCurrentRally.Invoke(this.id);
             TaskBarHandler.EventIn_SetTaskBarRallyname.Invoke(this.name);
-            PanelsHandler.EventIn_SetPanelBody.Invoke(PanelsHandler.PanelType.Rally);
+            PanelsHandler.EventIn_SetPanel.Invoke(PanelsHandler.PanelType.StartScreen);
         }
     }
 }
