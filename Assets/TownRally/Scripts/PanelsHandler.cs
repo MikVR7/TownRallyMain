@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TownRally
 {
-    internal class PanelsHandlerBody : MonoBehaviour
+    internal class PanelsHandler : MonoBehaviour
     {
         internal enum PanelType
         {

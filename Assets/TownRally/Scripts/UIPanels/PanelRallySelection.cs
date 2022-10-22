@@ -8,7 +8,7 @@ namespace TownRally
         [SerializeField] private GameObject prefabLineRally = null;
         [SerializeField] private RectTransform rtContentHolder = null;
 
-        private List<LineRally> rallyLines = new List<LineRally>();
+        private List<PanelRallySelectionLine> rallyLines = new List<PanelRallySelectionLine>();
 
         internal void Init()
         {
@@ -27,7 +27,7 @@ namespace TownRally
             rtLineRally.SetParent(rtContentHolder);
             rtLineRally.localScale = new Vector3(1f, 1f, 1f);
             rtLineRally.localPosition = new Vector3(rtLineRally.localPosition.x, rtLineRally.localPosition.y, 0f);
-            LineRally lineRally = goLineRally.GetComponent<LineRally>();
+            PanelRallySelectionLine lineRally = goLineRally.GetComponent<PanelRallySelectionLine>();
             lineRally.Init(id, name, caption);
             this.rallyLines.Add(lineRally);
         }

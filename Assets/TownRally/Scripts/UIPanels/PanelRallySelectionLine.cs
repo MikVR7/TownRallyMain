@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace TownRally
 {
-    internal class LineRally : MonoBehaviour
+    internal class PanelRallySelectionLine : MonoBehaviour
     {
         private static string TXT_LINERALLY = "&1<size=70%><br>&2";
 
@@ -27,7 +27,7 @@ namespace TownRally
         {
             RalliesHandler.EventIn_SetCurrentRally.Invoke(this.id);
             TaskBarHandler.EventIn_SetTaskBarRallyname.Invoke(this.name);
-            PanelsHandlerBody.EventIn_SetPanelBody.Invoke(PanelsHandlerBody.PanelType.Rally);
+            PanelsHandler.EventIn_SetPanelBody.Invoke(PanelsHandler.PanelType.Rally);
         }
     }
 }

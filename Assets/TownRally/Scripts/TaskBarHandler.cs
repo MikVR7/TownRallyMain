@@ -24,7 +24,7 @@ namespace TownRally
 
         private void OnBtnBack()
         {
-            PanelsHandlerBody.EventIn_OnBtnPanelBack.Invoke();
+            PanelsHandler.EventIn_OnBtnPanelBack.Invoke();
         }
 
         private void SetTaskBarUsername(string username)

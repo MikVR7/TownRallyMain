@@ -59,7 +59,7 @@ namespace TownRally
         {
             Debug.Log("ONTINUE!");
             this.username = this.inputName.text;
-            PanelsHandlerBody.EventIn_SetPanelBody.Invoke(PanelsHandlerBody.PanelType.RallySelection);
+            PanelsHandler.EventIn_SetPanelBody.Invoke(PanelsHandler.PanelType.RallySelection);
         }
     }
 }
