@@ -9,11 +9,13 @@ namespace TownRally
         [SerializeField] private RectTransform rtElementsParent = null;
         [SerializeField] private Dictionary<Type, GameObject> prefabsUIElements = new Dictionary<Type, GameObject>();
         private List<AUIElement> infoElements = new List<AUIElement>();
+        [SerializeField] private ScrollviewContent scrollviewContent = null;
 
         internal override void Init(PanelsHandler.PanelType panelType)
         {
             base.Init(panelType);
             RalliesHandler.EventOut_RallyChanged.AddListenerSingle(UpdateRallyInfo);
+            this.scrollviewContent.Init();
         }
 
         private void UpdateRallyInfo(Rally rally)
@@ -34,7 +36,7 @@ namespace TownRally
             Type elementType = AUIElement.UIELEMENT_TYPE[key];
             GameObject goUIElement = Instantiate(this.prefabsUIElements[elementType], this.rtElementsParent);
             AUIElement uiElement = (goUIElement.GetComponent(elementType) as AUIElement);
-            uiElement.Init(element.Replace(prefix, string.Empty));
+            uiElement.Init(index, element.Replace(prefix, string.Empty));
             this.infoElements.Add(uiElement);
         }
     }

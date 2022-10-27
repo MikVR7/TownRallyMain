@@ -24,10 +24,13 @@ namespace TownRally
         internal abstract EType ElementType { get; } 
 
         protected string elementData = string.Empty;
+        protected int elementIndex = 0;
 
-        internal virtual void Init(string elementData)
+        internal virtual void Init(int elementIndex, string elementData)
         {
             this.elementData = elementData;
+            this.elementIndex = elementIndex;
+            this.gameObject.name = ElementType.ToString().ToLower() + "_" + elementIndex;
         }
 
         internal virtual void DestroyElement()

@@ -9,9 +9,9 @@ namespace TownRally
 
         private TextMeshProUGUI tmpText = null;
 
-        internal override void Init(string elementData)
+        internal override void Init(int elementIndex, string elementData)
         {
-            base.Init(elementData);
+            base.Init(elementIndex, elementData);
             this.tmpText = this.GetComponent<TextMeshProUGUI>();
             tmpText.text = elementData;
         }

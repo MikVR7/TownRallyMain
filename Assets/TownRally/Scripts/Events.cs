@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace TownRally
 {
+    // TownRallyHandler.cs
+    internal class EventOut_OnUpdate : EventSystem { }
+
     // TaskBarHandler.cs
     internal class EventIn_SetTaskBarUsername : EventSystem<string> { }
     internal class EventIn_SetTaskBarRallyname : EventSystem<string> { }

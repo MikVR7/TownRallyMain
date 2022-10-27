@@ -10,9 +10,9 @@ namespace TownRally
         private RawImage image = null;
         private Texture texture = null;
 
-        internal override void Init(string elementData)
+        internal override void Init(int elementIndex, string elementData)
         {
-            base.Init(elementData);
+            base.Init(elementIndex, elementData);
             this.image = this.GetComponent<RawImage>();
             this.SetTexture(this.elementData);
         }
