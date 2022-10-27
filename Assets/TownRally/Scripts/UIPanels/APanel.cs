@@ -1,8 +1,9 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace TownRally
 {
-    internal abstract class APanel : MonoBehaviour
+    internal abstract class APanel : SerializedMonoBehaviour
     {
         public PanelsHandler.PanelType VarOut_PanelType { get; protected set; } = PanelsHandler.PanelType.None;
         
@@ -11,7 +12,7 @@ namespace TownRally
             this.VarOut_PanelType = panelType;
         }
         
-        internal void SetActive(bool active)
+        internal virtual void SetActive(bool active)
         {
             this.gameObject.SetActive(active);
         }

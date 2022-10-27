@@ -8,7 +8,7 @@ namespace TownRally
         public int ID { get; set; }
         public string Name { get; set; }
         public string Caption { get; set; }
-        public string IntroTeacher { get; set; }
+        public List<string> Description { get; set; }
         public List<RallyStation> Stations { get; set; }
     }
 }

@@ -6,6 +6,7 @@ namespace TownRally
     {
         private static RalliesHandler Instance = null;
         internal static EventIn_SetCurrentRally EventIn_SetCurrentRally = new EventIn_SetCurrentRally();
+        internal static EventOut_RallyChanged EventOut_RallyChanged = new EventOut_RallyChanged();
 
         private List<Rally> rallies { get; set; } = new List<Rally>();
         private int currentRallyID { get; set; } = 0;
@@ -33,7 +34,11 @@ namespace TownRally
             rally1.ID = this.rallies.Count;
             rally1.Name = "MurRally";
             rally1.Caption = "Entdecke die Mur in Graz";
-            rally1.IntroTeacher = "In der Stadt und auf der Höh’ – das schließt sich in Graz keineswegs aus. Der Fluss, die einzigartige Altstadt und mitten drin ein Berg. Der Grazer Schlossberg ist Sehenswürdigkeit, Naturschauspiel, Naherholungsgebiet und Aussichtspunkt zugleich. In kürzester Zeit gelangt man nach oben und genießt den herrlichen Ausblick auf Graz, die Altstadt und Umgebung. Einer Burg, die vor über 1.000 Jahren auf dem Schlossberg errichtet wurde, verdankt die Stadt ihren Namen. Aus dem slawischen Gradec für ,kleine Burg‘ wurde später Graz.\r\n\r\nSeit 1894 überwindet die Schlossbergbahn bravourös die rund 60% Steigung hinauf zum Schlossbergplateau - mit modernen Panoramagondeln.\r\n\r\nEine schnellere Art den Schlossberg zu erreichen, ist die Fahrt mit dem Schlossberglift.";
+            rally1.Description = new List<string>() {
+                "IMG:Rallies/SchlossbergRally/sbg_main.jpg",
+                "TXT:In der Stadt und auf der Höh’ – das schließt sich in Graz keineswegs aus. Der Fluss, die einzigartige Altstadt und mitten drin ein Berg. Der Grazer Schlossberg ist Sehenswürdigkeit, Naturschauspiel, Naherholungsgebiet und Aussichtspunkt zugleich. In kürzester Zeit gelangt man nach oben und genießt den herrlichen Ausblick auf Graz, die Altstadt und Umgebung. Einer Burg, die vor über 1.000 Jahren auf dem Schlossberg errichtet wurde, verdankt die Stadt ihren Namen. Aus dem slawischen Gradec für ,kleine Burg‘ wurde später Graz.\r\n\r\nSeit 1894 überwindet die Schlossbergbahn bravourös die rund 60% Steigung hinauf zum Schlossbergplateau - mit modernen Panoramagondeln.\r\n\r\nEine schnellere Art den Schlossberg zu erreichen, ist die Fahrt mit dem Schlossberglift.",
+                "IMG:Rallies/SchlossbergRally/sbg_main.jpg",
+                "TXT:In der Stadt und auf der Höh’ – das schließt sich in Graz keineswegs aus. Der Fluss, die einzigartige Altstadt und mitten drin ein Berg. Der Grazer Schlossberg ist Sehenswürdigkeit, Naturschauspiel, Naherholungsgebiet und Aussichtspunkt zugleich. In kürzester Zeit gelangt man nach oben und genießt den herrlichen Ausblick auf Graz, die Altstadt und Umgebung. Einer Burg, die vor über 1.000 Jahren auf dem Schlossberg errichtet wurde, verdankt die Stadt ihren Namen. Aus dem slawischen Gradec für ,kleine Burg‘ wurde später Graz.\r\n\r\nSeit 1894 überwindet die Schlossbergbahn bravourös die rund 60% Steigung hinauf zum Schlossbergplateau - mit modernen Panoramagondeln.\r\n\r\nEine schnellere Art den Schlossberg zu erreichen, ist die Fahrt mit dem Schlossberglift."};
             rally1.Stations = new List<RallyStation>()
             {
                 new RallyStation() {
@@ -58,7 +63,7 @@ namespace TownRally
             rally2.ID = this.rallies.Count;
             rally2.Name = "Schloßberg Rally";
             rally2.Caption = "Ausblick inmitten der Altstadt";
-            rally2.IntroTeacher = "Der Schloßberg in Graz bildet mit 123 Metern Höhe, ausgehend vom Grazer Hauptplatz, den höchsten natürlichen Punkt der Stadt und bietet einen 360° Rundblick über die Stadt Graz und deren Grenzen hinaus. Beginnen wir mit der Geschichte des Schloßbergs. Im 12. Jahrhundert wurde auf dem Schloßberg eine Burg errichtet, die der Stadt Graz auch ihren Namen gab. Einer Ableitung aus „gradec“ – dem slowenischen Begriff für kleine Burg. Da die Burg nie erobert wurde, ist sie im Guinness Buch der Rekorde als die stärkste Festung aller Zeiten aufgelistet. Nicht einmal Napoleon schaffte es im 19. Jahrhundert die Burg einzunehmen. Erst als er durch die Besetzung Wiens 1809 Graz erpresste, Wien zu zerstören, ergab sich die Stadt Graz. Bis auf den Glockenturm und den Uhrturm, die von den Grazern freigekauft wurden, wurde die Burg im Großen und Ganzen abgetragen und gesprengt, eine sogenannte Schleifung. 30 Jahre später legte Ludwig Freiherr von Weldenman Spazierwege und einen romantischen Garten am Schloßberg an.";
+            rally2.Description = new List<string>() { "IMG:./testpath/img.png", "TXT:Der Schloßberg in Graz bildet mit 123 Metern Höhe, ausgehend vom Grazer Hauptplatz, den höchsten natürlichen Punkt der Stadt und bietet einen 360° Rundblick über die Stadt Graz und deren Grenzen hinaus. Beginnen wir mit der Geschichte des Schloßbergs. Im 12. Jahrhundert wurde auf dem Schloßberg eine Burg errichtet, die der Stadt Graz auch ihren Namen gab. Einer Ableitung aus „gradec“ – dem slowenischen Begriff für kleine Burg. Da die Burg nie erobert wurde, ist sie im Guinness Buch der Rekorde als die stärkste Festung aller Zeiten aufgelistet. Nicht einmal Napoleon schaffte es im 19. Jahrhundert die Burg einzunehmen. Erst als er durch die Besetzung Wiens 1809 Graz erpresste, Wien zu zerstören, ergab sich die Stadt Graz. Bis auf den Glockenturm und den Uhrturm, die von den Grazern freigekauft wurden, wurde die Burg im Großen und Ganzen abgetragen und gesprengt, eine sogenannte Schleifung. 30 Jahre später legte Ludwig Freiherr von Weldenman Spazierwege und einen romantischen Garten am Schloßberg an." };
             rally2.Stations = new List<RallyStation>()
             {
                 new RallyStation()
@@ -80,6 +85,7 @@ namespace TownRally
         private void OnSetCurrentRally(int rallyID)
         {
             this.currentRallyID = rallyID;
+            EventOut_RallyChanged.Invoke(this.rallies[this.currentRallyID]);
         }
     }
 }
