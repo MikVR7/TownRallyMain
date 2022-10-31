@@ -12,6 +12,9 @@ namespace TownRally
 
         private void Awake()
         {
+#if UNITY_ANDROID
+            Screen.fullScreen = false;
+#endif
             this.ralliesHandler.Init();
             this.taskBarHandler.Init();
             this.panelsHandlerBody.Init();
@@ -20,6 +23,10 @@ namespace TownRally
         private void Update()
         {
             EventOut_OnUpdate.Invoke();
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                PanelsHandler.EventIn_OnBtnPanelBack.Invoke();
+            }
         }
     }
 }

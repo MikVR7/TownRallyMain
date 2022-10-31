@@ -1,7 +1,8 @@
 using Sirenix.OdinInspector;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TheraBytes.BetterUi;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,9 +23,11 @@ namespace TownRally
 
         internal void Init()
         {
-            this.myRectTransform = this.GetComponent<RectTransform>();
-            this.rtChildren =
-                this.myRectTransform.GetComponentsInChildren<RectTransform>().Skip(1).ToList();
+            if (this.myRectTransform == null)
+            {
+                this.myRectTransform = this.GetComponent<RectTransform>();
+            }
+            this.rtChildren = this.myRectTransform.GetComponentsInChildren<RectTransform>().Skip(1).ToList();
             this.OnUpdateScrollviewContent();
         }
 
@@ -32,14 +35,21 @@ namespace TownRally
         {
             if (this.gameObject.activeInHierarchy)
             {
-                this.OnUpdateScrollviewContent();
+                Init();
             }
         }
 
-        [Button("Update")] 
+        [Button("Update")]
+        private void OnBtnUpdate()
+        {
+            this.Init();
+        }
+
         private void OnUpdateScrollviewContent()
         {
             this.contentWidth = this.myRectTransform.rect.width;
+            //this.contentWidth = this.myRectTransform.sizeDelta.x;
+            Debug.Log("SIZE DELTA: " + this.contentWidth);
             this.contentHeight = this.borderTop;
 
             // get all active child elements
@@ -53,13 +63,14 @@ namespace TownRally
             this.myRectTransform.sizeDelta = new Vector2(this.myRectTransform.sizeDelta.x, this.contentHeight);
         }
 
+        private float height = 0f;
         private void FitElement(RectTransform rtChild, bool isLastElement)
         {
             RawImage rawImageChild = rtChild.GetComponent<RawImage>();
             rtChild.anchorMin = new Vector2(0, 1);
             rtChild.anchorMax = new Vector2(0, 1);
             rtChild.pivot = new Vector2(0, 1);
-            float height = 0f;
+            this.height = 0f;
             if ((rawImageChild != null) && (rawImageChild.texture != null))
             {
                 float heightMultiplier = (float)rawImageChild.texture.width / (float)rawImageChild.texture.height;
@@ -70,15 +81,7 @@ namespace TownRally
             }
             else
             {
-                BetterTextMeshProUGUI tmpChild = rtChild.GetComponent<BetterTextMeshProUGUI>();
-                if(tmpChild != null)
-                {
-                    rtChild.sizeDelta = new Vector2(this.contentWidth, rtChild.sizeDelta.y);
-                    height = tmpChild.preferredHeight;
-                    rtChild.anchoredPosition = new Vector2(0f, -this.contentHeight);
-                    rtChild.sizeDelta = new Vector2(rtChild.sizeDelta.x, height);
-                    this.AddBordersLeftRight(rtChild);
-                }
+                /*StartCoroutine*/SetTextMeshPro(rtChild);
             }
             this.contentHeight += height;
             if(isLastElement)
@@ -95,6 +98,30 @@ namespace TownRally
         {
             rtChild.anchoredPosition = new Vector2(rtChild.anchoredPosition.x + this.borderLeft, rtChild.anchoredPosition.y);
             rtChild.sizeDelta = new Vector2(rtChild.sizeDelta.x - (this.borderLeft + this.borderRight), rtChild.sizeDelta.y);
+        }
+
+        private void SetTextMeshPro(RectTransform rtChild)
+        {
+            //yield return new WaitForEndOfFrame();
+
+            TextMeshProUGUI tmpChild = rtChild.GetComponent<TextMeshProUGUI>();
+            if (tmpChild != null)
+            {
+                rtChild.sizeDelta = new Vector2(this.contentWidth, rtChild.sizeDelta.y);
+                //yield return new WaitForEndOfFrame();
+                height = tmpChild.GetPreferredValues().y;// tmpChild.text, float.PositiveInfinity, float.PositiveInfinity).y;
+                //float padding = 0;
+                //float minHeight = 0;
+                ////var width = Mathf.Max(preferredValues.x + padding * 2, minWidth);
+                //height = Mathf.Max(preferredValues.y + padding * 2, minHeight);
+                //Vector2 bgSize = new Vector2(width, height);
+
+
+                Debug.Log("HEIGHT: " + height + " " + tmpChild.preferredHeight + " " + tmpChild.flexibleHeight + " " + tmpChild.maxHeight + " " + tmpChild.renderedHeight);
+                rtChild.anchoredPosition = new Vector2(0f, -this.contentHeight);
+                rtChild.sizeDelta = new Vector2(rtChild.sizeDelta.x, height);
+                this.AddBordersLeftRight(rtChild);
+            }
         }
     }
 }

@@ -29,7 +29,7 @@ namespace TownRally
 
         private void OnBtnStartRally()
         {
-            PanelsHandler.EventIn_SetPanel.Invoke(PanelsHandler.PanelType.StartScreen);
+            PanelsHandler.EventIn_SetPanel.Invoke(PanelsHandler.PanelType.RallyWelcome);
         }
     }
 }

@@ -15,6 +15,8 @@ namespace TownRally
             StartScreen = 3,
             RallyInfo = 4,
             RallyMap = 5,
+            RallyWelcome = 6,
+            TaskGotoDestination = 100,
         }
 
         internal static EventIn_OnBtnPanelBack EventIn_OnBtnPanelBack = new EventIn_OnBtnPanelBack();
@@ -35,10 +37,13 @@ namespace TownRally
 
         private void OnBtnPanelBack()
         {
-            PanelType previousPanelType = this.panelQueue[this.panelQueue.Count - 2];
-            this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
-            this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
-            SetPanel(previousPanelType);
+            if (this.panelQueue.Count >= 2)
+            {
+                PanelType previousPanelType = this.panelQueue[this.panelQueue.Count - 2];
+                this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
+                this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
+                SetPanel(previousPanelType);
+            }
         }
 
         private void SetPanel(PanelType nextPanel)
@@ -46,6 +51,8 @@ namespace TownRally
             this.currentPanel = nextPanel;
             AddPanelToPanelQueue();
             this.panels.Keys.ForEach(i => this.panels[i].SetActive(nextPanel.Equals(i)));
+            TaskBarHandler.EventIn_SetActiveBtnBack.Invoke(this.panelQueue.Count > 1);
+            Debug.Log("PANELS IN QUEUE: " + this.panelQueue.Count);
         }
 
         private void AddPanelToPanelQueue()
