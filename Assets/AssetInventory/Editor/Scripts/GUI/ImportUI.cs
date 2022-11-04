@@ -135,7 +135,7 @@ namespace AssetInventory
             _importQueue = new List<AssetInfo>();
             foreach (AssetInfo info in _assets)
             {
-                if (info.SafeName == Asset.None) continue;
+                if (info.SafeName == Asset.NONE) continue;
                 if (!info.Downloaded)
                 {
                     info.ImportState = AssetInfo.ImportStateOptions.Missing;
@@ -192,7 +192,7 @@ namespace AssetInventory
             _scrollPos = GUILayout.BeginScrollView(_scrollPos, false, false, GUIStyle.none, GUI.skin.verticalScrollbar, GUILayout.ExpandWidth(true));
             foreach (AssetInfo info in _assets)
             {
-                if (info.SafeName == Asset.None) continue;
+                if (info.SafeName == Asset.NONE) continue;
 
                 GUILayout.BeginHorizontal();
                 EditorGUI.BeginDisabledGroup(true);

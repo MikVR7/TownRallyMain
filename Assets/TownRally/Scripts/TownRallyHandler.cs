@@ -8,6 +8,7 @@ namespace TownRally
 
         [SerializeField] private PanelsHandler panelsHandlerBody = null;
         [SerializeField] private TaskBarHandler taskBarHandler = null;
+        [SerializeField] private OverlayConfirmation overlayConfirmation = null;
         private RalliesHandler ralliesHandler = new RalliesHandler();
 
         private void Awake()

@@ -16,8 +16,12 @@ namespace TownRally
     // PanelsHandlerBody.cs
     internal class EventIn_OnBtnPanelBack : EventSystem { }
     internal class EventIn_SetPanel : EventSystem<PanelsHandler.PanelType> { }
+    internal class EventIn_OnConfirmCloseRally : EventSystem { }
 
     // RalliesHandler.cs
     internal class EventIn_SetCurrentRally : EventSystem<int> { }
     internal class EventOut_RallyChanged : EventSystem<Rally> { }
+
+    // OverlayConfirmation.cs
+    internal class EventIn_DisplayOverlayConfirmation : EventSystem<bool> { }
 }

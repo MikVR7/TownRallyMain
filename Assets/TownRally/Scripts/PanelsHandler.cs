@@ -15,11 +15,11 @@ namespace TownRally
             StartScreen = 3,
             RallyInfo = 4,
             RallyMap = 5,
-            RallyWelcome = 6,
-            TaskGotoDestination = 100,
+            Rally = 6,
         }
 
         internal static EventIn_OnBtnPanelBack EventIn_OnBtnPanelBack = new EventIn_OnBtnPanelBack();
+        internal static EventIn_OnConfirmCloseRally EventIn_OnConfirmCloseRally = new EventIn_OnConfirmCloseRally();
         internal static EventIn_SetPanel EventIn_SetPanel = new EventIn_SetPanel();
 
         [SerializeField] private Dictionary<PanelType, APanel> panels = new Dictionary<PanelType, APanel>();
@@ -39,11 +39,27 @@ namespace TownRally
         {
             if (this.panelQueue.Count >= 2)
             {
-                PanelType previousPanelType = this.panelQueue[this.panelQueue.Count - 2];
-                this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
-                this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
-                SetPanel(previousPanelType);
+                if (this.panelQueue[this.panelQueue.Count - 1] == PanelType.Rally)
+                {
+                    EventIn_OnConfirmCloseRally.AddListenerSingle(OnConfirmCloseRally);
+                    OverlayConfirmation.EventIn_DisplayOverlayConfirmation.Invoke(true);
+                }
+                else
+                {
+                    PanelType previousPanelType = this.panelQueue[this.panelQueue.Count - 2];
+                    this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
+                    this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
+                    SetPanel(previousPanelType);
+                }
             }
+        }
+
+        private void OnConfirmCloseRally()
+        {
+            PanelType previousPanelType = this.panelQueue[this.panelQueue.Count - 2];
+            this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
+            this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
+            SetPanel(previousPanelType);
         }
 
         private void SetPanel(PanelType nextPanel)
