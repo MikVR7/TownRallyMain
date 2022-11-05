@@ -6,14 +6,14 @@ namespace TownRally
 {
     public struct RallyStationTask
     {
-        public enum RallyTask
+        public enum Type
         {
             None = 0,
             Welcome = 1,
             GotoDestination = 2,
         }
 
-        public RallyTask TaskType { get; set; }
+        public Type TaskType { get; set; }
         public List<Vector2> DestinationPoints { get; set; }
         public string Description { get; set; }
     }

@@ -2,7 +2,7 @@ namespace TownRally
 {
     internal class PanelTaskGotoDestination : ARallyTask
     {
-        internal override void Init(ARallyTask.RallyTask rallyTask)
+        internal override void Init(RallyStationTask.Type rallyTask)
         {
             base.Init(rallyTask);
         }

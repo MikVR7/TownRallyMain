@@ -1,15 +1,25 @@
+using UnityEngine;
+using UnityEngine.UI;
+
 namespace TownRally
 {
     internal class PanelTaskWelcome : ARallyTask
     {
-        internal override void Init(ARallyTask.RallyTask rallyTask)
+        [SerializeField] private Button btnContinue = null;
+        internal override void Init(RallyStationTask.Type rallyTask)
         {
             base.Init(rallyTask);
+            btnContinue.onClick.AddListener(OnBtnContinue);
         }
 
         internal override void SetActive(bool active)
         {
             base.SetActive(active);
+        }
+
+        private void OnBtnContinue()
+        {
+            RalliesHandler.EventIn_CurrentTaskFinished.Invoke();
         }
     }
 }

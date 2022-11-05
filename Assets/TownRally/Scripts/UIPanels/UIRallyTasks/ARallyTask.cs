@@ -4,9 +4,9 @@ namespace TownRally
 {
     internal abstract class ARallyTask : MonoBehaviour
     {
-        public RallyStationTask.RallyTask VarOut_TaskType { get; protected set; } = RallyStationTask.RallyTask.None;
+        public RallyStationTask.Type VarOut_TaskType { get; protected set; } = RallyStationTask.Type.None;
 
-        internal virtual void Init(RallyStationTask.RallyTask rallyTask)
+        internal virtual void Init(RallyStationTask.Type rallyTask)
         {
             this.VarOut_TaskType = rallyTask;
             this.SetActive(false);
