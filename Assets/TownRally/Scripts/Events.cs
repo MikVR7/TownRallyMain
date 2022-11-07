@@ -22,6 +22,8 @@ namespace TownRally
     internal class EventIn_SetCurrentRally : EventSystem<int> { }
     internal class EventOut_RallyChanged : EventSystem<Rally> { }
     internal class EventIn_CurrentTaskFinished : EventSystem { }
+    internal class EventOut_RallyStationTaskChanged : EventSystem { }
+    //internal class EventOut_RallyStationChanged : EventSystem { }
 
     // OverlayConfirmation.cs
     internal class EventIn_DisplayOverlayConfirmation : EventSystem<bool> { }

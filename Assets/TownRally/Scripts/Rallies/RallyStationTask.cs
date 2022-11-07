@@ -9,12 +9,13 @@ namespace TownRally
         public enum Type
         {
             None = 0,
-            Welcome = 1,
+            InfoScreen = 1,
             GotoDestination = 2,
+            Game_Objectfind = 100,
         }
 
         public Type TaskType { get; set; }
-        public List<Vector2> DestinationPoints { get; set; }
+        public Vector2 DestinationPoint { get; set; }
         public string Description { get; set; }
     }
 }

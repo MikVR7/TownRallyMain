@@ -12,6 +12,8 @@ namespace TownRally
         internal static EventIn_SetCurrentRally EventIn_SetCurrentRally = new EventIn_SetCurrentRally();
         internal static EventOut_RallyChanged EventOut_RallyChanged = new EventOut_RallyChanged();
         internal static EventIn_CurrentTaskFinished EventIn_CurrentTaskFinished = new EventIn_CurrentTaskFinished();
+        internal static EventOut_RallyStationTaskChanged EventOut_RallyStationTaskChanged = new EventOut_RallyStationTaskChanged();
+        //internal static EventOut_RallyStationChanged EventOut_RallyStationChanged = new EventOut_RallyStationChanged();
 
         private List<Rally> rallies { get; set; } = new List<Rally>();
         private int currentRallyID { get; set; } = 0;
@@ -64,7 +66,7 @@ namespace TownRally
                         {
                             new RallyStationTask()
                             {
-                                TaskType = RallyStationTask.Type.Welcome
+                                TaskType = RallyStationTask.Type.InfoScreen,
                             },
                             new RallyStationTask()
                             {
@@ -84,7 +86,7 @@ namespace TownRally
                         {
                             new RallyStationTask()
                             {
-                                TaskType = RallyStationTask.Type.Welcome
+                                TaskType = RallyStationTask.Type.InfoScreen
                             },
                             new RallyStationTask()
                             {
@@ -101,7 +103,7 @@ namespace TownRally
                         {
                             new RallyStationTask()
                             {
-                                TaskType = RallyStationTask.Type.Welcome
+                                TaskType = RallyStationTask.Type.InfoScreen
                             },
                             new RallyStationTask()
                             {
@@ -121,7 +123,9 @@ namespace TownRally
             //rally2.ID = this.rallies.Count;
             rally2.Name = "Schloßberg Rally";
             rally2.Caption = "Ausblick inmitten der Altstadt";
-            rally2.Description = new List<string>() { "IMG:./testpath/img.png", "TXT:Der Schloßberg in Graz bildet mit 123 Metern Höhe, ausgehend vom Grazer Hauptplatz, den höchsten natürlichen Punkt der Stadt und bietet einen 360° Rundblick über die Stadt Graz und deren Grenzen hinaus. Beginnen wir mit der Geschichte des Schloßbergs. Im 12. Jahrhundert wurde auf dem Schloßberg eine Burg errichtet, die der Stadt Graz auch ihren Namen gab. Einer Ableitung aus „gradec“ – dem slowenischen Begriff für kleine Burg. Da die Burg nie erobert wurde, ist sie im Guinness Buch der Rekorde als die stärkste Festung aller Zeiten aufgelistet. Nicht einmal Napoleon schaffte es im 19. Jahrhundert die Burg einzunehmen. Erst als er durch die Besetzung Wiens 1809 Graz erpresste, Wien zu zerstören, ergab sich die Stadt Graz. Bis auf den Glockenturm und den Uhrturm, die von den Grazern freigekauft wurden, wurde die Burg im Großen und Ganzen abgetragen und gesprengt, eine sogenannte Schleifung. 30 Jahre später legte Ludwig Freiherr von Weldenman Spazierwege und einen romantischen Garten am Schloßberg an." };
+            rally2.Description = new List<string>() {
+                "IMG:./testpath/img.png",
+                "TXT:Der Schloßberg in Graz bildet mit 123 Metern Höhe, ausgehend vom Grazer Hauptplatz, den höchsten natürlichen Punkt der Stadt und bietet einen 360° Rundblick über die Stadt Graz und deren Grenzen hinaus. Beginnen wir mit der Geschichte des Schloßbergs. Im 12. Jahrhundert wurde auf dem Schloßberg eine Burg errichtet, die der Stadt Graz auch ihren Namen gab. Einer Ableitung aus „gradec“ – dem slowenischen Begriff für kleine Burg. Da die Burg nie erobert wurde, ist sie im Guinness Buch der Rekorde als die stärkste Festung aller Zeiten aufgelistet. Nicht einmal Napoleon schaffte es im 19. Jahrhundert die Burg einzunehmen. Erst als er durch die Besetzung Wiens 1809 Graz erpresste, Wien zu zerstören, ergab sich die Stadt Graz. Bis auf den Glockenturm und den Uhrturm, die von den Grazern freigekauft wurden, wurde die Burg im Großen und Ganzen abgetragen und gesprengt, eine sogenannte Schleifung. 30 Jahre später legte Ludwig Freiherr von Weldenman Spazierwege und einen romantischen Garten am Schloßberg an." };
             rally2.Stations = new Dictionary<int, RallyStation>()
             {
                 {
@@ -132,19 +136,32 @@ namespace TownRally
                         {
                             new RallyStationTask()
                             {
-                                TaskType = RallyStationTask.Type.Welcome
+                                TaskType = RallyStationTask.Type.GotoDestination,
+                                Description = "Begib dich zum Kameliterplatz (Karmeliterpl., 8010 Graz)",
+                                DestinationPoint = new Vector2(47.073880f, 15.440496f),
                             },
                             new RallyStationTask()
                             {
-                                TaskType = RallyStationTask.Type.GotoDestination,
-                                Description = "Hop hop, auf zum Uhrturm!"
+                                TaskType = RallyStationTask.Type.InfoScreen,
+                                Description = "Hallo und herzlich willkommen bei der<br><b><size=130%>Schloßberg-Townrallye!"
                             },
+                            new RallyStationTask()
+                            {
+                                TaskType = RallyStationTask.Type.Game_Objectfind,
+                                Description = "Um die Rallye zu starten, suche mit deinem Handy eine Teufelsfigur am Kamerliterplatz!",
+
+
+                            },
+
                         },
                         //ID = 0,
                         //Name = "Schloßberg Start",
                         //Description = "Die Mur entspringt in Salzburg, genauer gesagt in Muhr im Lungau. Die Mur durchfließt drei Länder: Österreich, Slowenien, Ungarn und Kroatien, an manchen Stellen dient sie sogar als Landesgrenze. So erscheint es kaum verwunderlich, dass die Mur noch einen weiteren Namen trägt. Im Slowenischen, Kroatischen sowie Ungarischen wird sie Mura genannt. Mehrere Flüsse verbinden sich mit der Mur, so mündet in Kroatien der Fluss Trnava in der nördlichen kroatischen Landschaft Me?imurje, was übersetzt  auch „Zwischen der Mur“ oder „Murinsel“ bedeutet. Auch der große Nebenfluss zur Donau, die Drau, mündet in die Mur. Die beiden großen Flüsse treffen sich auch im nördlichen Kroatien, in der Nähe der Ortschaft Legrad. Nach insgesamt 430km hat die Mur ihr Ziel erreicht: das Schwarze Meer. (Karte: Begriff Binnenmeer)\r\nDie Mur bildet den Hauptfluss der Steiermark, vor allem für die Gründung von Städten und Dörfern spielte sie in der Vergangenheit eine wichtige Rolle, schließlich bietet die Nähe zu fließenden Gewässern den Menschen viele Vorteile: frisches Trinkwasser, Fischfang und Handelswege wären drei davon. In der Steiermark tragen manche Ortschaften den Namen „Mur“ sogar in ihrer Bezeichnung wie zum Beispiel Bruck an der Mur, Murau, und Mureck.",
+                        
                     }
                 },
+
+
                 {
                     1,
                     new RallyStation()
@@ -153,7 +170,8 @@ namespace TownRally
                         {
                             new RallyStationTask()
                             {
-                                TaskType = RallyStationTask.Type.Welcome
+                                TaskType = RallyStationTask.Type.InfoScreen,
+                                Description = "Hallo und herzlich willkommen bei der Schloßberg-Townrallye!<br><br><size=70%>Um die Rallye zu starten, öffne bitte deine Kamera und suche damit am Kameliterplatz eine Teufelsfigur."
                             },
                             new RallyStationTask()
                             {
@@ -178,8 +196,8 @@ namespace TownRally
             RallyStationTask task = rallyStation.Tasks[rallyStation.currentTask];
             if(rallyStation.currentTask+1 < rallyStation.Tasks.Count)
             {
+                // display next task
                 rallyStation.currentTask++;
-                EventOut_RallyStationTaskChanged.Invoke();
             }
             else
             {
@@ -202,9 +220,9 @@ namespace TownRally
                 {
                     this.ContinueAtNextUnfinishedStation();
                 }
-                EventOut_RallyStationChanged.Invoke();
+                
             }
-            
+            EventOut_RallyStationTaskChanged.Invoke();
         }
 
         private void ContinueAtNextUnfinishedStation()

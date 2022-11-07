@@ -2411,7 +2411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00024414062}
+  m_AnchoredPosition: {x: 0, y: -0.00048828125}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &400816394
@@ -3928,12 +3928,12 @@ GameObject:
   - component: {fileID: 632711159}
   - component: {fileID: 632711160}
   m_Layer: 0
-  m_Name: panel_task_goto_destination
+  m_Name: task_goto_destination
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &632711159
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4161,8 +4161,8 @@ MonoBehaviour:
   m_VerticalScrollbar: {fileID: 212746537}
   m_HorizontalScrollbarVisibility: 2
   m_VerticalScrollbarVisibility: 2
-  m_HorizontalScrollbarSpacing: -7.197399
-  m_VerticalScrollbarSpacing: -7.197399
+  m_HorizontalScrollbarSpacing: -7.696641
+  m_VerticalScrollbarSpacing: -7.696641
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5681,7 +5681,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -28.900146}
+  m_AnchoredPosition: {x: 0, y: -28.899902}
   m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1042093541
@@ -6521,12 +6521,12 @@ GameObject:
   - component: {fileID: 1342534036}
   - component: {fileID: 1342534037}
   m_Layer: 0
-  m_Name: panel_task_welcome
+  m_Name: task_infoscreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1342534036
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6563,6 +6563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac0213c734800d44812be09459eba1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btnContinue: {fileID: 0}
 --- !u!1 &1361196511
 GameObject:
   m_ObjectHideFlags: 0
@@ -6698,6 +6699,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361196511}
   m_CullTransparentMesh: 1
+--- !u!1 &1365320571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1365320572}
+  m_Layer: 0
+  m_Name: task_game_objectfind
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1365320572
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365320571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1596237453}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1386221169
 GameObject:
   m_ObjectHideFlags: 0
@@ -7634,6 +7671,7 @@ RectTransform:
   m_Children:
   - {fileID: 1342534036}
   - {fileID: 632711159}
+  - {fileID: 1365320572}
   m_Father: {fileID: 794877838}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7667,11 +7705,11 @@ MonoBehaviour:
     SerializationNodes:
     - Name: rallyTasks
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[TownRally.ARallyTask+RallyTask,
+      Data: 0|System.Collections.Generic.Dictionary`2[[TownRally.RallyStationTask+Type,
         assembly_townrally],[TownRally.ARallyTask, assembly_townrally]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[TownRally.ARallyTask+RallyTask,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[TownRally.RallyStationTask+Type,
         assembly_townrally]], mscorlib
     - Name: 
       Entry: 12
@@ -9523,7 +9561,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -28.900146}
+  m_AnchoredPosition: {x: 0, y: -28.899902}
   m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1962279051
