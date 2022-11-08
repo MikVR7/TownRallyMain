@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "RFCR30BWAYB",
     "m_SelectedPackage": {
-        "deviceId": "RFCR30BWAYB",
-        "name": "com.Tokele.TownRallyMain",
-        "processId": 19867,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,50 +11,32 @@
         {
             "deviceId": "RFCR30BWAYB",
             "name": "com.Tokele.TownRallyMain",
-            "processId": 30652,
+            "processId": 21603,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 23719,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 26844,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.sec.android.app.launcher",
+            "processId": 3205,
             "exited": false
         },
         {
             "deviceId": "RFCR30BWAYB",
             "name": "com.Tokele.TownRallyMain",
-            "processId": 26962,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCR30BWAYB",
-            "name": "com.Tokele.TownRallyMain",
-            "processId": 28906,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCR30BWAYB",
-            "name": "com.Tokele.TownRallyMain",
-            "processId": 30112,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCR30BWAYB",
-            "name": "com.Tokele.TownRallyMain",
-            "processId": 31102,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCR30BWAYB",
-            "name": "com.Tokele.TownRallyMain",
-            "processId": 12626,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCR30BWAYB",
-            "name": "com.Tokele.TownRallyMain",
-            "processId": 13804,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCR30BWAYB",
-            "name": "com.Tokele.TownRallyMain",
-            "processId": 19867,
-            "exited": false
+            "processId": 30999,
+            "exited": true
         }
     ],
     "m_Tags": {

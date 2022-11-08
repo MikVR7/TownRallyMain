@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TownRally/Scenes/main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/Plugins/CW/LeanTouch/Examples/12 Transform.unity
-    guid: bcc6d67bd10127441a6feb2e68bfe9e8
-  - enabled: 0
-    path: Assets/Plugins/CW/LeanTouch/Examples/13    Relative.unity
-    guid: f4503f8040e549f489cd402bce299069
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/TownRally/Scenes/test_ar.unity
+    guid: 67a5005ea4623ca4ebd2d289a7d4a67d
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: f0f65c8230220194db776d9bf640c83e, type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 07aa4b73ecafe934bbe0398791c6ef41, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 187c21d7171699641b34de97d5c11850, type: 2}

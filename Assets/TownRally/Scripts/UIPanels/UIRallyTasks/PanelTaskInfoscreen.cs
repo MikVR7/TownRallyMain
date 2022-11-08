@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace TownRally
 {
-    internal class PanelTaskWelcome : ARallyTask
+    internal class PanelTaskInfoscreen : ARallyTask
     {
         [SerializeField] private Button btnContinue = null;
         internal override void Init(RallyStationTask.Type rallyTask)
