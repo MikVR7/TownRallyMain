@@ -35,17 +35,17 @@ namespace TownRally
         private bool isLoaded = false;
         private void OnBtnDebug()
         {
-            RalliesHandler.EventIn_CurrentTaskFinished.Invoke();
-            //if (isLoaded == false)
-            //{
-            //    SceneManager.LoadSceneAsync("test_ar", LoadSceneMode.Additive);
-            //    isLoaded = true;
-            //}
-            //else
-            //{
-            //    SceneManager.UnloadSceneAsync("test_ar");
-            //    isLoaded = false;
-            //}
+            //RalliesHandler.EventIn_CurrentTaskFinished.Invoke();
+            if (isLoaded == false)
+            {
+                SceneManager.LoadSceneAsync("tr_map", LoadSceneMode.Additive);
+                isLoaded = true;
+            }
+            else
+            {
+                SceneManager.UnloadSceneAsync("tr_map");
+                isLoaded = false;
+            }
         }
 
         private void SetActiveBtnBack(bool active)

@@ -27,4 +27,7 @@ namespace TownRally
 
     // OverlayConfirmation.cs
     internal class EventIn_DisplayOverlayConfirmation : EventSystem<bool> { }
+
+    // MapsCommunicator.cs
+    internal class EventIn_OpenCloseMapsScene : EventSystem<bool> { }
 }

@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "RFCR30BWAYB",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "RFCR30BWAYB",
+        "name": "com.Tokele.TownRallyMain",
+        "processId": 24545,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -37,6 +37,30 @@
             "name": "com.Tokele.TownRallyMain",
             "processId": 30999,
             "exited": true
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 14023,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 17460,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 26707,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 24545,
+            "exited": false
         }
     ],
     "m_Tags": {

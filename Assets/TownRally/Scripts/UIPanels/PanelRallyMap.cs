@@ -6,5 +6,15 @@ namespace TownRally
         {
             base.Init(panelType);
         }
+
+        private void OnEnable()
+        {
+            MapsCommunicator.EventIn_OpenCloseMapsScene.Invoke(true);
+        }
+
+        private void OnDisable()
+        {
+            MapsCommunicator.EventIn_OpenCloseMapsScene.Invoke(false);
+        }
     }
 }

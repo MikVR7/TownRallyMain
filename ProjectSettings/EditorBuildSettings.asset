@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/TownRally/Scenes/main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/TownRally/Scenes/test_ar.unity
+    path: Assets/TownRally/Scenes/tr_ar_cam.unity
     guid: 67a5005ea4623ca4ebd2d289a7d4a67d
+  - enabled: 1
+    path: Assets/TownRally/Scenes/tr_map.unity
+    guid: 164ba7c6b7977f0468de968d327d85e6
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: f0f65c8230220194db776d9bf640c83e, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 07aa4b73ecafe934bbe0398791c6ef41, type: 2}
