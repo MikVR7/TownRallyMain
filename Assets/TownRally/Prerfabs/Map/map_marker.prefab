@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4381761676865153223}
   - component: {fileID: 5523711707789358432}
   - component: {fileID: 959696031599212169}
+  - component: {fileID: 2010037456}
   m_Layer: 0
   m_Name: mesh
   m_TagString: Untagged
@@ -26,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996001451853861320}
-  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8499226443726484844}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!33 &4381761676865153223
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97,6 +98,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2010037456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996001451853861320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+  outlineWidth: 4.07
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4135898708847778204
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +168,8 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 4300000, guid: ce846e277ece4ba4bbfc73a2eddc01fa, type: 3}
     - {fileID: 4300000, guid: cace0b4260176de46b5ca288f5d42e32, type: 3}
+    - {fileID: 4300000, guid: e49c959f3097f964e85dde87cf1eca2f, type: 3}
+    - {fileID: 4300000, guid: 0ad880189f2374e428e0ac9e678d1c07, type: 3}
     - {fileID: 7400000, guid: cf77d5e4b4a45e041990401bf3d8710f, type: 2}
     - {fileID: 7400000, guid: 3561d193246433644bdcb140cd566cc0, type: 2}
     SerializedBytesString: 
@@ -175,7 +196,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 7
       Data: 
@@ -197,6 +218,30 @@ MonoBehaviour:
     - Name: $v
       Entry: 10
       Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -215,7 +260,7 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 7
       Data: 
@@ -227,16 +272,16 @@ MonoBehaviour:
       Data: UnityEngine.Color, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.992156863
+      Data: 1
     - Name: 
       Entry: 4
-      Data: 0.9843137
+      Data: 0.4509804
     - Name: 
       Entry: 4
-      Data: 0.7411765
+      Data: 0.211764708
     - Name: 
       Entry: 4
-      Data: 0.9019608
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -254,16 +299,70 @@ MonoBehaviour:
       Data: UnityEngine.Color, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.5529412
+      Data: 0.160784319
     - Name: 
       Entry: 4
-      Data: 0.843137264
+      Data: 0.478058636
     - Name: 
       Entry: 4
-      Data: 0.521568656
+      Data: 0.698039234
     - Name: 
       Entry: 4
-      Data: 0.9019608
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.160377383
+    - Name: 
+      Entry: 4
+      Data: 0.160377383
+    - Name: 
+      Entry: 4
+      Data: 0.160377383
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.160784319
+    - Name: 
+      Entry: 4
+      Data: 0.698039234
+    - Name: 
+      Entry: 4
+      Data: 0.164705887
+    - Name: 
+      Entry: 4
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -296,7 +395,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 7
       Data: 
@@ -305,7 +404,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 10
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -317,7 +416,31 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
       Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 4
     - Name: 
       Entry: 8
       Data: 

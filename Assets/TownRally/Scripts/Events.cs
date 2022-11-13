@@ -1,4 +1,5 @@
 using CodeEvents;
+using GeoCoordinatePortable;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,4 +31,7 @@ namespace TownRally
 
     // MapsCommunicator.cs
     internal class EventIn_OpenCloseMapsScene : EventSystem<bool> { }
+    // MapObjectsHandler.cs
+    internal class EventIn_AddMapObject : EventSystem<GeoCoordinate, MapObject.Type, string> { }
+    internal class EventIn_SetMapObjectPosition : EventSystem<GeoCoordinate, string> { }
 }

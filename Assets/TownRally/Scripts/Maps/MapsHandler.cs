@@ -5,12 +5,12 @@ using UnityEngine.Rendering.Universal;
 
 namespace TownRally
 {
-    public struct GeoPosition
-    {
-        public float Latitude;
-        public float Longitude;
-        public float Altitude;
-    }
+    //public struct GeoPosition
+    //{
+    //    public float Latitude;
+    //    public float Longitude;
+    //    public float Altitude;
+    //}
     internal class MapsHandler : MonoBehaviour
     {
         internal static MapsHandler Instance = null;

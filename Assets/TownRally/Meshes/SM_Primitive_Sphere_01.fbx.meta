@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0ad880189f2374e428e0ac9e678d1c07
+guid: e49c959f3097f964e85dde87cf1eca2f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -17,7 +17,7 @@ ModelImporter:
     second: //RootNode
   - first:
       43: 4300000
-    second: SM_Icon_Tick_01
+    second: SM_Primitive_Sphere_01
   - first:
       95: 9500000
     second: //RootNode
@@ -53,7 +53,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 2
+    globalScale: 0.2
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -106,7 +106,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.02
+    globalScale: 0.002
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
