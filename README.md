@@ -14,3 +14,6 @@ Planned:
 - iOS compatibility
 - Rally Editor for private users
 - Rally evaluation and review system
+
+Project is currently under heavy development, so currently there is no useful testing-version available.
+First prototype testing with a group of ~20 students is planned for May 2023.
