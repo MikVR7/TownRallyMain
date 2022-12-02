@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TownRally
 {
@@ -10,17 +11,23 @@ namespace TownRally
     {
         [SerializeField] private OnlineMaps onlineMaps = null;
         [SerializeField] private TextMeshProUGUI tmpDebug = null;
-
+        [SerializeField] private Button btnGotoCurrentPos = null;
         private GeoCoordinate lastWaypoint = new GeoCoordinate() { Latitude = 0f, Longitude = 0f };
         private GeoCoordinate currentPosition = new GeoCoordinate();
 
-        private int interval = 1;
+        private float interval = 1f;
         private float nextTime = 0;
         private int waypointCount = 0;
 
         private void Awake()
         {
             StartCoroutine(this.StartLocationService());
+            btnGotoCurrentPos.onClick.AddListener(OnBtnGotoCurrentPos);
+        }
+
+        private void OnBtnGotoCurrentPos()
+        {
+            
         }
 
         private IEnumerator StartLocationService()
@@ -70,10 +77,13 @@ namespace TownRally
         {
             
 
-            if(Input.location.status != LocationServiceStatus.Running) {
+            if(Application.platform != RuntimePlatform.Android) {
+                Debug.Log("NOT RUNNING!!" + Input.location.status);
                 HandleKeyInputs();    
                 return;
             }
+
+            Debug.Log("NEXT TIME: " + (Time.time >= nextTime) + " " + Time.time + " " + nextTime);
 
             if (Time.time >= nextTime)
             {
@@ -107,11 +117,14 @@ namespace TownRally
             this.CheckForNextStation();
         }
 
+        private int count = 0;
         private void UpdateGeoPosition()
         {
             this.currentPosition.Latitude = Input.location.lastData.latitude;
             this.currentPosition.Longitude = Input.location.lastData.longitude;
 
+            this.tmpDebug.text = "UPDATE! " + count++;
+            Debug.Log("TEST: " + count);
             this.UpdateMapView();
             this.CheckForNextWaypoint();
             this.CheckForNextStation();
@@ -156,7 +169,7 @@ namespace TownRally
                         stations[i].stationDone = true;
                         stations[i].SetType(MapObject.Type.DestinationCheck);
                     }
-                    this.tmpDebug.text = "Distance to next station: " + distance.ToString("F2");
+                    //this.tmpDebug.text = "Distance to next station: " + distance.ToString("F2");
                 }
             }
         }

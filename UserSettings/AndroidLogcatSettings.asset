@@ -3,29 +3,11 @@
     "m_SelectedPackage": {
         "deviceId": "RFCR30BWAYB",
         "name": "com.Tokele.TownRallyMain",
-        "processId": 6261,
+        "processId": 4513,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "RFCR30BWAYB",
-            "name": "com.Tokele.TownRallyMain",
-            "processId": 21603,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCR30BWAYB",
-            "name": "com.Tokele.TownRallyMain",
-            "processId": 23719,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCR30BWAYB",
-            "name": "com.Tokele.TownRallyMain",
-            "processId": 26844,
-            "exited": true
-        },
         {
             "deviceId": "RFCR30BWAYB",
             "name": "com.sec.android.app.launcher",
@@ -35,43 +17,157 @@
         {
             "deviceId": "RFCR30BWAYB",
             "name": "com.Tokele.TownRallyMain",
-            "processId": 30999,
+            "processId": 14865,
             "exited": true
         },
         {
             "deviceId": "RFCR30BWAYB",
             "name": "com.Tokele.TownRallyMain",
-            "processId": 14023,
+            "processId": 21584,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 29779,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 32728,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 7604,
             "exited": false
         },
         {
             "deviceId": "RFCR30BWAYB",
             "name": "com.Tokele.TownRallyMain",
-            "processId": 17460,
+            "processId": 9049,
             "exited": false
         },
         {
             "deviceId": "RFCR30BWAYB",
             "name": "com.Tokele.TownRallyMain",
-            "processId": 26707,
+            "processId": 11895,
             "exited": false
         },
         {
             "deviceId": "RFCR30BWAYB",
             "name": "com.Tokele.TownRallyMain",
-            "processId": 24545,
+            "processId": 14715,
             "exited": false
         },
         {
             "deviceId": "RFCR30BWAYB",
             "name": "com.Tokele.TownRallyMain",
-            "processId": 3436,
+            "processId": 17049,
             "exited": false
         },
         {
             "deviceId": "RFCR30BWAYB",
             "name": "com.Tokele.TownRallyMain",
-            "processId": 6261,
+            "processId": 23418,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 26280,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 28028,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 28670,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 29318,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 31944,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 32370,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 1254,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 5953,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 7947,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 8374,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 8729,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 9154,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 9484,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 9866,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 1052,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 4513,
             "exited": false
         }
     ],
