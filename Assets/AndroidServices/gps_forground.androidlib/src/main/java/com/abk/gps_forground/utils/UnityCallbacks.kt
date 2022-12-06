@@ -6,7 +6,7 @@ class UnityCallbacks {
     private val TAG: String = "UnityCallbacks"
 
     companion object {
-        const val CALLBACK_OBJ: String = "LocationPluginListener"
+        const val CALLBACK_OBJ: String = "android_bridge"
         const val onLocationRetrieved: String = "onLocationRetrieved"
         const val onPermissionDenied: String = "onPermissionDenied"
         const val onGPSDenied: String = "onGPSDenied"

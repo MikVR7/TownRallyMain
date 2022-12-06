@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/TownRally/Scenes/main.unity
+    path: Assets/TownRally/Scenes/tr_main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
     path: Assets/TownRally/Scenes/tr_ar_cam.unity

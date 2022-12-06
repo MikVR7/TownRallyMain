@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class Utils {
     public static long minTime = 30000;
-    public static float minDistance = 10f;
+    public static float minDistance = 20f;
     public static double latitude = 0;
     public static double longitude = 0;
 

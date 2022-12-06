@@ -1,0 +1,16 @@
+{
+    "name": "assembly_android_services",
+    "rootNamespace": "AndroidServices",
+    "references": [
+        "GUID:8a2d5bd8f97794549ab27bbb815fbe0d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

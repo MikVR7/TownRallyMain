@@ -39,7 +39,8 @@ fun getAllLocationData(context: Context): String {
 fun writeDataToFile(
     context: Context,
     latitude: Double,
-    longitude: Double
+    longitude: Double,
+    //time: Long,
 ) {
 
     val file = File(context.filesDir, FILE_NAME)

@@ -1,9 +1,12 @@
+using AndroidServices;
 using GeoCoordinatePortable;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static AndroidServices.AndroidBridge;
 
 namespace TownRally
 {
@@ -27,7 +30,29 @@ namespace TownRally
 
         private void OnBtnGotoCurrentPos()
         {
+#if UNITY_EDITOR
+            OnResponseGotoCurrentPos(new Location()
+            {
+                latitude = 47.06384f,
+                longitude = 15.44817f,
+                time = DateTime.UtcNow.ToLongDateString()
+            });
+#endif
+            AndroidBridge.EventInOut_GetCurrentLocation.Invoke(OnResponseGotoCurrentPos);
             
+        }
+
+        private void OnResponseGotoCurrentPos(AndroidBridge.Location location) {
+            this.tmpDebug.text = location.latitude + " " + location.longitude;
+            
+            this.currentPosition.Latitude = location.latitude;
+            this.currentPosition.Longitude = location.longitude;
+
+            this.tmpDebug.text = "UPDATE! " + count++;
+            Debug.Log("TEST: " + count);
+            this.UpdateMapView();
+            this.CheckForNextWaypoint();
+            this.CheckForNextStation();
         }
 
         private IEnumerator StartLocationService()
@@ -75,7 +100,7 @@ namespace TownRally
 
         private void Update()
         {
-            
+            return;
 
             if(Application.platform != RuntimePlatform.Android) {
                 Debug.Log("NOT RUNNING!!" + Input.location.status);

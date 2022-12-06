@@ -106,6 +106,7 @@ class LocationService : Service() {
             if (location != null) {
                 val latitude = location.latitude
                 val longitude = location.longitude
+                //val time = System.currentTimeMillis();
 //                locationArray.add(JSONObject().apply {
 //                    put("time", System.currentTimeMillis())
 //                    put("lat", latitude)
@@ -113,11 +114,12 @@ class LocationService : Service() {
 //                })
                 Utils.latitude = latitude
                 Utils.longitude = longitude
+               // Utils.time = time;
 
 
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
-                        writeDataToFile(applicationContext, latitude, longitude)
+                        writeDataToFile(applicationContext, latitude, longitude/*, time*/)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
