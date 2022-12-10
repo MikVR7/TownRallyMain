@@ -15,6 +15,7 @@ namespace TownRally
         [SerializeField] private OnlineMaps onlineMaps = null;
         [SerializeField] private TextMeshProUGUI tmpDebug = null;
         [SerializeField] private Button btnGotoCurrentPos = null;
+        [SerializeField] private MapsHandler mapsHandler = null;
         private GeoCoordinate lastWaypoint = new GeoCoordinate() { Latitude = 0f, Longitude = 0f };
         private GeoCoordinate currentPosition = new GeoCoordinate();
 
@@ -26,6 +27,7 @@ namespace TownRally
         {
             StartCoroutine(this.StartLocationService());
             btnGotoCurrentPos.onClick.AddListener(OnBtnGotoCurrentPos);
+            this.mapsHandler.Init(false);
         }
 
         private void OnBtnGotoCurrentPos()

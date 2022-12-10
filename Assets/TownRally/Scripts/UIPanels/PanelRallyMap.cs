@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace TownRally
 {
     internal class PanelRallyMap : APanel
@@ -9,12 +11,12 @@ namespace TownRally
 
         private void OnEnable()
         {
-            MapsCommunicator.EventIn_OpenCloseMapsScene.Invoke(true);
+            MapsHandler.EventIn_DisplayMap.Invoke(true);
         }
 
         private void OnDisable()
         {
-            MapsCommunicator.EventIn_OpenCloseMapsScene.Invoke(false);
+            MapsHandler.EventIn_DisplayMap.Invoke(false);
         }
     }
 }

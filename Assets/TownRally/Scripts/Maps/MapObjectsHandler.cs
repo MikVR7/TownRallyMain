@@ -34,9 +34,12 @@ namespace TownRally
             EventIn_AddMapObject.AddListenerSingle(AddMapObject);
             EventIn_SetMapObjectPosition.AddListenerSingle(SetMapObjectPosition);
             this.onlineMapsMarker3DManager = onlineMapsMarker3DManager;
+
+            /*
             this.AddMapObject(GlobalConfig.GeoPosHome, MapObject.Type.Character, GlobalConfig.MapObjectNameCharMain);
             this.AddMapObject(GlobalConfig.GeoPosKarmeliterplatz, MapObject.Type.GotoDestination, GlobalConfig.MapObjectNameStationSuffix + "1");
             this.AddMapObject(GlobalConfig.GeoPosUhrturm, MapObject.Type.GotoDestination, GlobalConfig.MapObjectNameStationSuffix + "2");
+            */
         }
 
         private void AddMapObject(GeoCoordinate geoCoord, MapObject.Type objectType, string id)

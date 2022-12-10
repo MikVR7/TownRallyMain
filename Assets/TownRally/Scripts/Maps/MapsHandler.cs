@@ -1,49 +1,43 @@
-using CodeEvents;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
+using static AndroidServices.AndroidBridge;
 
 namespace TownRally
 {
-    //public struct GeoPosition
-    //{
-    //    public float Latitude;
-    //    public float Longitude;
-    //    public float Altitude;
-    //}
     internal class MapsHandler : MonoBehaviour
     {
-        internal static MapsHandler Instance = null;
+        internal static EventIn_SetMapPosition EventIn_SetMapPosition = new EventIn_SetMapPosition();
+        internal static EventIn_DisplayMap EventIn_DisplayMap = new EventIn_DisplayMap();
 
         [SerializeField] private OnlineMaps onlineMaps = null;
         [SerializeField] private OnlineMapsTileSetControl onlineMapsTileset = null;
         [SerializeField] private OnlineMapsMarker3DManager onlineMapsMarker3DManager = null;
         [SerializeField] private Camera cameraMap = null;
-        [SerializeField] private EventSystem eventSystem = null;
+        [SerializeField] private GameObject goEventSystem = null;
         [SerializeField] private UniversalAdditionalCameraData camData = null;
         [SerializeField] private MapObjectsHandler mapObjectsHandler = null;
+        [SerializeField] private Light mapLight = null;
 
-        private void Awake()
+        internal void Init(bool isSceneMain)
         {
-            Instance = this;
-            Scene activeScene = SceneManager.GetActiveScene();
-            if (activeScene.name.Equals(GlobalConfig.SceneNameMap))
-            {
-                camData.renderType = CameraRenderType.Base;
-                Init();
-            }
-            else if (activeScene.name.Equals(GlobalConfig.SceneNameMain))
-            {
-                camData.renderType = CameraRenderType.Overlay;
-            }
-        }
+            EventIn_SetMapPosition.AddListenerSingle(SetMapPosition);
+            EventIn_DisplayMap.AddListenerSingle(DisplayMap);
 
-        internal void Init()
-        {
-            this.onlineMapsTileset.activeCamera = this.cameraMap;
             this.mapObjectsHandler.Init(this.onlineMapsMarker3DManager);
+            this.camData.renderType = isSceneMain ? CameraRenderType.Overlay : CameraRenderType.Overlay;
+            this.goEventSystem.SetActive(!isSceneMain);
+            this.DisplayMap(!isSceneMain);
+            this.mapLight.enabled = isSceneMain;
         }
 
-        internal Camera VarOut_Camera() { return this.cameraMap; }
+        private void DisplayMap(bool display)
+        {
+            this.gameObject.SetActive(display);
+        }
+
+        internal void SetMapPosition(Location location)
+        {
+            this.onlineMaps.SetPosition(location.longitude, location.latitude);
+        }
     }
 }

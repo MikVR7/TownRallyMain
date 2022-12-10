@@ -3,6 +3,7 @@ using GeoCoordinatePortable;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AndroidServices.AndroidBridge;
 
 namespace TownRally
 {
@@ -29,8 +30,12 @@ namespace TownRally
     // OverlayConfirmation.cs
     internal class EventIn_DisplayOverlayConfirmation : EventSystem<bool> { }
 
-    // MapsCommunicator.cs
-    internal class EventIn_OpenCloseMapsScene : EventSystem<bool> { }
+    //// MapsCommunicator.cs
+    //internal class EventIn_OpenCloseMapsScene : EventSystem<bool> { }
+    // MapsHandler.cs
+    internal class EventIn_SetMapPosition : EventSystem<Location> { }
+    internal class EventIn_DisplayMap : EventSystem<bool> { }
+
     // MapObjectsHandler.cs
     internal class EventIn_AddMapObject : EventSystem<GeoCoordinate, MapObject.Type, string> { }
     internal class EventIn_SetMapObjectPosition : EventSystem<GeoCoordinate, string> { }
