@@ -34,6 +34,7 @@ namespace TownRally
     //internal class EventIn_OpenCloseMapsScene : EventSystem<bool> { }
     // MapsHandler.cs
     internal class EventIn_SetMapPosition : EventSystem<Location> { }
+    internal class EventIn_SetMapCurrentGPSPosition : EventSystem { }
     internal class EventIn_DisplayMap : EventSystem<bool> { }
 
     // MapObjectsHandler.cs

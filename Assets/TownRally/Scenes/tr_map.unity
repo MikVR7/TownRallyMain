@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 20410429}
   - component: {fileID: 20410428}
   m_Layer: 5
-  m_Name: btn_goto_current_pos
+  m_Name: btn_debug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -409,9 +409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f816145000de24aac7904b3ccb8476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlineMaps: {fileID: 1085486630}
   tmpDebug: {fileID: 275868754}
-  btnGotoCurrentPos: {fileID: 20410428}
+  btnDebug: {fileID: 20410428}
   mapsHandler: {fileID: 2313216120642054124}
 --- !u!4 &99393300
 Transform:
@@ -613,17 +612,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1085486630 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2313216119560769997, guid: ab4eda65f634e58489b2146bbd4b07c5, type: 3}
-  m_PrefabInstance: {fileID: 2313216120642054123}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cf484bb098da8c48973c6e0076a9e35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2023326980
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace TownRally
@@ -5,6 +6,7 @@ namespace TownRally
     internal class TownRallyHandler : MonoBehaviour
     {
         internal static EventOut_OnUpdate EventOut_OnUpdate = new EventOut_OnUpdate();
+        //internal static event Action EventOut_OnUpdate;
 
         [SerializeField] private PanelsHandler panelsHandlerBody = null;
         [SerializeField] private TaskBarHandler taskBarHandler = null;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace CodeEvents
 {
@@ -25,6 +26,153 @@ namespace CodeEvents
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //public class EventSystem
+    //{
+    //    private event Action eventListeners;
+
+    //    public void AddListener(Action listener)
+    //    {
+    //        eventListeners += listener;
+    //    }
+
+    //    public void AddListenerSingle(Action listener)
+    //    {
+    //        if (!HasListener(listener))
+    //        {
+    //            eventListeners += listener;
+    //        }
+    //    }
+
+    //    public void RemoveListener(Action listener)
+    //    {
+    //        eventListeners -= listener;
+    //    }
+
+    //    public void RemoveAllListeners()
+    //    {
+    //        eventListeners = null;
+    //    }
+
+    //    public bool HasListeners()
+    //    {
+    //        return eventListeners != null;
+    //    }
+
+    //    public int GetCountListeners()
+    //    {
+    //        return eventListeners.GetInvocationList().Length;
+    //    }
+
+    //    public void Invoke()
+    //    {
+    //        eventListeners?.Invoke();
+    //    }
+
+    //    public T Invoke<T>()
+    //    {
+    //        if (eventListeners == null)
+    //        {
+    //            return default;
+    //        }
+
+    //        var result = default(T);
+    //        var listeners = eventListeners.GetInvocationList();
+    //        foreach (Func<T> listener in listeners)
+    //        {
+    //            result = listener();
+    //        }
+    //        return result;
+    //    }
+
+    //    public bool HasListener(Action listener)
+    //    {
+    //        return eventListeners?.GetInvocationList().Contains(listener) ?? false;
+    //    }
+    //}
+
+
+
+
+
+
+
+
+
+    //////public class EventSystem
+    //////{
+    //////    private event Action eventListeners;
+    //////    private object listLock = new object();
+
+    //////    public void AddListener(Action listener)
+    //////    {
+    //////        lock (listLock)
+    //////        {
+    //////            eventListeners += listener;
+    //////        }
+    //////    }
+
+    //////    public void RemoveListener(Action listener)
+    //////    {
+    //////        lock (listLock)
+    //////        {
+    //////            eventListeners -= listener;
+    //////        }
+    //////    }
+
+    //////    public void RemoveAllListeners()
+    //////    {
+    //////        lock (listLock)
+    //////        {
+    //////            eventListeners = null;
+    //////        }
+    //////    }
+
+    //////    public bool HasListeners()
+    //////    {
+    //////        lock (listLock)
+    //////        {
+    //////            return eventListeners != null;
+    //////        }
+    //////    }
+
+    //////    public void Invoke()
+    //////    {
+    //////        eventListeners?.Invoke();
+    //////    }
+    //////}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public class EventSystem : AbstractEventSystem
     {
