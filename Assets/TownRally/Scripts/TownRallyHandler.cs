@@ -10,16 +10,22 @@ namespace TownRally
 
         [SerializeField] private PanelsHandler panelsHandlerBody = null;
         [SerializeField] private TaskBarHandler taskBarHandler = null;
-        [SerializeField] private OverlayConfirmation overlayConfirmation = null;
         [SerializeField] private MapsHandler mapsHandler = null;
         [SerializeField] private CamerasHandler camerasHandler = null;
+        [SerializeField] private OverlaysHandler overlaysHandler = null;
+        private DatabaseHandler databaseHandler = new DatabaseHandler();
         private RalliesHandler ralliesHandler = new RalliesHandler();
+        private PlayerPrefsHandler playerPrefsHandler = new PlayerPrefsHandler();
 
         private void Awake()
         {
-//#if UNITY_ANDROID
-//            Screen.fullScreen = false;
-//#endif
+            //#if UNITY_ANDROID
+            //            Screen.fullScreen = false;
+            //#endif
+            Settings.Init();
+            this.overlaysHandler.Init();
+            this.databaseHandler.Init();
+            this.playerPrefsHandler.Init();
             this.camerasHandler.Init();
             this.ralliesHandler.Init();
             this.taskBarHandler.Init();

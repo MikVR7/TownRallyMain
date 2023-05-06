@@ -9,19 +9,26 @@ namespace TownRally
         [SerializeField] private GameObject prefabLineRally = null;
         [SerializeField] private RectTransform rtContentHolder = null;
 
-        private List<PanelRallySelectionLine> rallyLines = new List<PanelRallySelectionLine>();
+        private Dictionary<string, PanelRallySelectionLine> rallyLines = new Dictionary<string, PanelRallySelectionLine>();
 
         internal override void Init(PanelType panelType)
         {
             base.Init(panelType);
-            this.rallyLines.Clear();
-            for(int i = 0; i < RalliesHandler.VarOut_GetRalliesCount(); i++)
+        }
+
+        private void OnEnable()
+        {
+            Dictionary<string, Rally> rallies = RalliesHandler.VarOut_GetRallies();
+            foreach (string rallyID in rallies.Keys)
             {
-                CreateLineRally(i, RalliesHandler.VarOut_GetRallyNameByID(i), RalliesHandler.VarOut_GetRallyCaptionByID(i));
+                if (!rallyLines.ContainsKey(rallyID))
+                {
+                    CreateLineRally(rallyID, rallies[rallyID]);
+                }
             }
         }
 
-        private void CreateLineRally(int id, string name, string caption)
+        private void CreateLineRally(string rallyID, Rally rally)
         {
             GameObject goLineRally = Instantiate(prefabLineRally);
             goLineRally.name = "rally_" + name;
@@ -30,8 +37,8 @@ namespace TownRally
             rtLineRally.localScale = new Vector3(1f, 1f, 1f);
             rtLineRally.localPosition = new Vector3(rtLineRally.localPosition.x, rtLineRally.localPosition.y, 0f);
             PanelRallySelectionLine lineRally = goLineRally.GetComponent<PanelRallySelectionLine>();
-            lineRally.Init(id, name, caption);
-            this.rallyLines.Add(lineRally);
+            lineRally.Init(rallyID, rally);
+            this.rallyLines.Add(rallyID, lineRally);
         }
     }
 }

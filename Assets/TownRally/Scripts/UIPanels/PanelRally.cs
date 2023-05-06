@@ -5,16 +5,16 @@ namespace TownRally
 {
     internal class PanelRally : APanel
     {
-        [SerializeField] private Dictionary<RallyStationTask.Type, ARallyTask> rallyTasks = new Dictionary<RallyStationTask.Type, ARallyTask>(); 
+        [SerializeField] private Dictionary<Task.Type, ARallyTask> rallyTasks = new Dictionary<Task.Type, ARallyTask>(); 
 
         internal override void Init(PanelsHandler.PanelType panelType)
         {
             base.Init(panelType);
-            foreach(RallyStationTask.Type task in this.rallyTasks.Keys)
+            foreach(Task.Type task in this.rallyTasks.Keys)
             {
                 this.rallyTasks[task].Init(task);
             }
-            RalliesHandler.EventOut_RallyStationTaskChanged.AddListenerSingle(RallyStationTaskChanged);
+            //RalliesHandler.EventOut_RallyStationTaskChanged.AddListenerSingle(RallyStationTaskChanged);
         }
 
         internal override void SetActive(bool active)
@@ -27,10 +27,10 @@ namespace TownRally
 
         private void RallyStationTaskChanged()
         {
-            RallyStationTask currentTask = RalliesHandler.VarOut_GetCurrentTask();
-            foreach (RallyStationTask.Type taskType in this.rallyTasks.Keys)
+            Task currentTask = RalliesHandler.VarOut_CurrentTask();
+            foreach (Task.Type taskType in this.rallyTasks.Keys)
             {
-                rallyTasks[taskType].SetActive(currentTask.TaskType.Equals(taskType));
+                rallyTasks[taskType].SetActive(currentTask.TType.Equals(taskType));
             }
         }
     }

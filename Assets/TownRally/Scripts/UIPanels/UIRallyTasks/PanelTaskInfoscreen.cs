@@ -6,7 +6,7 @@ namespace TownRally
     internal class PanelTaskInfoscreen : ARallyTask
     {
         [SerializeField] private Button btnContinue = null;
-        internal override void Init(RallyStationTask.Type rallyTask)
+        internal override void Init(Task.Type rallyTask)
         {
             base.Init(rallyTask);
             btnContinue.onClick.AddListener(OnBtnContinue);
@@ -19,7 +19,7 @@ namespace TownRally
 
         private void OnBtnContinue()
         {
-            RalliesHandler.EventIn_CurrentTaskFinished.Invoke();
+            //RalliesHandler.EventIn_CurrentTaskFinished.Invoke();
         }
     }
 }

@@ -1,30 +1,48 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace TownRally
 {
     internal class TaskBarHandler : MonoBehaviour
     {
-        internal static EventIn_SetActiveBtnBack EventIn_SetActiveBtnBack = new EventIn_SetActiveBtnBack();
-        internal static EventIn_SetTaskBarUsername EventIn_SetTaskBarUsername = new EventIn_SetTaskBarUsername();
-        internal static EventIn_SetTaskBarRallyname EventIn_SetTaskBarRallyname = new EventIn_SetTaskBarRallyname();
+        internal static EventOut_OnBtnDebug EventOut_OnBtnDebug = new EventOut_OnBtnDebug();
 
         [SerializeField] private Button btnBack = null;
         [SerializeField] private Button btnDebug = null;
         [SerializeField] private TextMeshProUGUI tmpUsername = null;
         [SerializeField] private TextMeshProUGUI tmpRallyname = null;
+        [SerializeField] private Image imgDebugActive = null;
 
         internal void Init()
         {
             this.btnBack.onClick.AddListener(OnBtnBack);
             this.btnDebug.onClick.AddListener(OnBtnDebug);
-            EventIn_SetTaskBarUsername.AddListenerSingle(SetTaskBarUsername);
-            EventIn_SetTaskBarRallyname.AddListenerSingle(SetTaskBarRallyname);
-            EventIn_SetActiveBtnBack.AddListenerSingle(SetActiveBtnBack);
             this.tmpUsername.text = string.Empty;
             this.tmpRallyname.text = string.Empty;
+            Settings.EventOut_ValueChanged[Settings.Value.Username].AddListenerSingle(OnUsernameChanged);
+            Settings.EventOut_ValueChanged[Settings.Value.Rally].AddListenerSingle(OnSelectedRallyChanged);
+            Settings.EventOut_ValueChanged[Settings.Value.CurrentPanel].AddListenerSingle(OnCurrentPanelChanged);
+        }
+
+        private void OnUsernameChanged()
+        {
+            this.tmpUsername.text = PanelLogin.VarOut_GetUsername();
+        }
+
+        private void OnSelectedRallyChanged()
+        {
+            this.tmpRallyname.text = RalliesHandler.VarOut_CurrentRally().Name;
+        }
+
+        private void OnCurrentPanelChanged()
+        {
+            PanelsHandler.PanelType type = PanelsHandler.VarOut_CurrentPanel;
+            this.btnBack.gameObject.SetActive(
+                !type.Equals(PanelsHandler.PanelType.Loading) &&
+                !type.Equals(PanelsHandler.PanelType.Login) &&
+                !type.Equals(PanelsHandler.PanelType.Rally) &&
+                !type.Equals(PanelsHandler.PanelType.None));
         }
 
         private void OnBtnBack()
@@ -32,35 +50,11 @@ namespace TownRally
             PanelsHandler.EventIn_OnBtnPanelBack.Invoke();
         }
 
-        private bool isLoaded = false;
         private void OnBtnDebug()
         {
-            //RalliesHandler.EventIn_CurrentTaskFinished.Invoke();
-            if (isLoaded == false)
-            {
-                SceneManager.LoadSceneAsync("tr_map", LoadSceneMode.Additive);
-                isLoaded = true;
-            }
-            else
-            {
-                SceneManager.UnloadSceneAsync("tr_map");
-                isLoaded = false;
-            }
-        }
-
-        private void SetActiveBtnBack(bool active)
-        {
-            this.btnBack.gameObject.SetActive(active);
-        }
-
-        private void SetTaskBarUsername(string username)
-        {
-            this.tmpUsername.text = username;
-        }
-
-        private void SetTaskBarRallyname(string rallyname)
-        {
-            this.tmpRallyname.text = rallyname;
+            //Settings.IsDebugModeOn = !Settings.IsDebugModeOn;
+            //this.imgDebugActive.gameObject.SetActive(Settings.IsDebugModeOn);
+            //EventOut_OnBtnDebug.Invoke();
         }
     }
 }

@@ -10,70 +10,59 @@ namespace TownRally
         internal enum PanelType
         {
             None = 0,
-            Login = 1,
-            RallySelection = 2,
-            StartScreen = 3,
-            RallyInfo = 4,
-            RallyMap = 5,
-            Rally = 6,
+            Loading = 1,
+            Login = 2,
+            RallySelection = 3,
+            StartScreen = 4,
+            RallyInfo = 5,
+            RallyMap = 6,
+            Rally = 7,
         }
 
         internal static EventIn_OnBtnPanelBack EventIn_OnBtnPanelBack = new EventIn_OnBtnPanelBack();
-        internal static EventIn_OnConfirmCloseRally EventIn_OnConfirmCloseRally = new EventIn_OnConfirmCloseRally();
         internal static EventIn_SetPanel EventIn_SetPanel = new EventIn_SetPanel();
 
         [SerializeField] private Dictionary<PanelType, APanel> panels = new Dictionary<PanelType, APanel>();
 
-        private PanelType currentPanel = PanelType.Login;
         private List<PanelType> panelQueue = new List<PanelType>();
+        internal static PanelType VarOut_CurrentPanel { get; set; } = PanelType.None;
 
         internal void Init()
         {
             this.panels.Keys.ForEach(i => this.panels[i].Init(i));
             EventIn_OnBtnPanelBack.AddListenerSingle(OnBtnPanelBack);
             EventIn_SetPanel.AddListenerSingle(SetPanel);
-            SetPanel(PanelType.Login);
+            SetPanel(PanelType.Loading);
         }
 
         private void OnBtnPanelBack()
         {
+            Debug.Log("THIS PANEL QUEUE COUNT: " + panelQueue.Count);
             if (this.panelQueue.Count >= 2)
             {
-                if (this.panelQueue[this.panelQueue.Count - 1] == PanelType.Rally)
-                {
-                    EventIn_OnConfirmCloseRally.AddListenerSingle(OnConfirmCloseRally);
-                    OverlayConfirmation.EventIn_DisplayOverlayConfirmation.Invoke(true);
-                }
-                else
-                {
-                    PanelType previousPanelType = this.panelQueue[this.panelQueue.Count - 2];
-                    this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
-                    this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
-                    SetPanel(previousPanelType);
-                }
+                PanelType previousPanelType = this.panelQueue[this.panelQueue.Count - 2];
+                this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
+                this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
+                SetPanel(previousPanelType);
             }
-        }
-
-        private void OnConfirmCloseRally()
-        {
-            PanelType previousPanelType = this.panelQueue[this.panelQueue.Count - 2];
-            this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
-            this.panelQueue.RemoveAt(this.panelQueue.Count - 1);
-            SetPanel(previousPanelType);
         }
 
         private void SetPanel(PanelType nextPanel)
         {
-            this.currentPanel = nextPanel;
-            AddPanelToPanelQueue();
+            VarOut_CurrentPanel = nextPanel;
+            Settings.EventOut_ValueChanged[Settings.Value.CurrentPanel].Invoke();
+
+            if (!VarOut_CurrentPanel.Equals(PanelType.Loading))
+            {
+                AddPanelToPanelQueue(nextPanel);
+            }
             this.panels.Keys.ForEach(i => this.panels[i].SetActive(nextPanel.Equals(i)));
-            TaskBarHandler.EventIn_SetActiveBtnBack.Invoke(this.panelQueue.Count > 1);
-            Debug.Log("PANELS IN QUEUE: " + this.panelQueue.Count);
+            bool isActiveBtnBack = (this.panelQueue.Count > 1) && (nextPanel != PanelType.Rally);
         }
 
-        private void AddPanelToPanelQueue()
+        private void AddPanelToPanelQueue(PanelType nextPanel)
         {
-            this.panelQueue.Add(this.currentPanel);
+            this.panelQueue.Add(nextPanel);
         }
     }
 }

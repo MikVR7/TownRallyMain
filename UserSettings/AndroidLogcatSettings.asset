@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "RFCR30BWAYB",
         "name": "com.Tokele.TownRallyMain",
-        "processId": 9066,
+        "processId": 5094,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -36,6 +36,12 @@
             "deviceId": "RFCR30BWAYB",
             "name": "com.Tokele.TownRallyMain",
             "processId": 9066,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR30BWAYB",
+            "name": "com.Tokele.TownRallyMain",
+            "processId": 5094,
             "exited": false
         }
     ],

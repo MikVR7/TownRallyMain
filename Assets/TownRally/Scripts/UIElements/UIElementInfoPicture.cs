@@ -5,16 +5,17 @@ namespace TownRally
 {
     internal class UIElementInfoPicture : AUIElement
     {
-        internal override EType ElementType => AUIElement.EType.Picture;
+        //internal override EType ElementType => AUIElement.EType.Picture;
 
         private RawImage image = null;
         private Texture texture = null;
 
-        internal override void Init(int elementIndex, string elementData)
+        //internal override void Init(int elementIndex, Rally.DescriptionType descriptionType, Rally.Description elementData)
+        internal override void Init(int elementIndex, Rally.DescriptionType descriptionType, string elementData)
         {
-            base.Init(elementIndex, elementData);
+            base.Init(elementIndex, descriptionType, elementData);
             this.image = this.GetComponent<RawImage>();
-            this.SetTexture(this.elementData);
+            this.SetTexture(this.descriptionData);
         }
 
         private void SetTexture(string path)

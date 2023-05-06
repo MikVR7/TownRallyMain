@@ -6,29 +6,22 @@ namespace TownRally
 {
     internal abstract class AUIElement : MonoBehaviour
     {
-        internal static readonly string KEY_PREFIX_IMG = "IMG";
-        internal static readonly string KEY_PREFIX_TXT = "TXT";
-        internal static readonly Dictionary<string, Type> UIELEMENT_TYPE =
-            new Dictionary<string, Type>()
+        internal static readonly Dictionary<Rally.DescriptionType, Type> UIELEMENT_TYPE =
+            new Dictionary<Rally.DescriptionType, Type>()
             {
-                { KEY_PREFIX_IMG, typeof(UIElementInfoPicture) },
-                { KEY_PREFIX_TXT, typeof(UIElementInfoText) },
+                { Rally.DescriptionType.Image, typeof(UIElementInfoPicture) },
+                { Rally.DescriptionType.Text, typeof(UIElementInfoText) },
             };
 
-        internal enum EType
-        {
-            Text = 0,
-            Picture = 1,
-        }
+        internal Rally.DescriptionType ElementType { get; set; } 
 
-        internal abstract EType ElementType { get; } 
-
-        protected string elementData = string.Empty;
+        protected string descriptionData = string.Empty;
         protected int elementIndex = 0;
 
-        internal virtual void Init(int elementIndex, string elementData)
+        internal virtual void Init(int elementIndex, Rally.DescriptionType descriptionType, string descriptionData)
         {
-            this.elementData = elementData;
+            this.descriptionData = descriptionData;
+            this.ElementType = descriptionType;
             this.elementIndex = elementIndex;
             this.gameObject.name = ElementType.ToString().ToLower() + "_" + elementIndex;
         }

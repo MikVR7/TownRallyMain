@@ -6,14 +6,16 @@ namespace TownRally
 {
     internal class PanelLogin : APanel
     {
+        private static PanelLogin Instance = null;
+        internal static string VarOut_GetUsername() { return Instance.inputName.text; }
+
         [SerializeField] private Button btnContinue = null;
         [SerializeField] private TMP_InputField inputName = null;
         
-        private string username = string.Empty;
-
         internal override void Init(PanelsHandler.PanelType panelType)
         {
             base.Init(panelType);
+            Instance = this;
             this.btnContinue.onClick.AddListener(OnBtnContinue);
             this.btnContinue.interactable = false;
             this.inputName.onValueChanged.AddListener(OnValidateInputName);
@@ -26,7 +28,7 @@ namespace TownRally
 
         private void OnBtnContinue()
         {
-            this.username = this.inputName.text;
+            Settings.EventOut_ValueChanged[Settings.Value.Username].Invoke();
             PanelsHandler.EventIn_SetPanel.Invoke(PanelsHandler.PanelType.RallySelection);
         }
     }

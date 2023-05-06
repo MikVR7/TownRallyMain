@@ -10,23 +10,21 @@ namespace TownRally
 
         [SerializeField] private Button btnSelf = null;
         [SerializeField] private TextMeshProUGUI tmpText = null;
-        private int id = 0;
-        private string name = string.Empty;
-        private string caption = string.Empty;
+        private string rallyId = string.Empty;
+        private Rally rally;
 
-        internal void Init(int id, string name, string caption)
+        internal void Init(string rallyId, Rally rally)
         {
-            this.id = id;
-            this.name = name;
-            this.caption = caption;
-            this.tmpText.text = TXT_LINERALLY.Replace("&1", this.name).Replace("&2", this.caption);
+            this.rallyId = rallyId;
+            this.rally = rally;
+            this.tmpText.text = TXT_LINERALLY.Replace("&1", this.rally.Name).Replace("&2", this.rally.Caption);
             this.btnSelf.onClick.AddListener(OnClick);
         }
 
-        private void OnClick()
+        private async void OnClick()
         {
-            RalliesHandler.EventIn_SetCurrentRally.Invoke(this.id);
-            TaskBarHandler.EventIn_SetTaskBarRallyname.Invoke(this.name);
+            RalliesHandler.EventIn_SetCurrentRally.Invoke(this.rallyId);
+            Debug.Log("GOT IT!!!3");
             PanelsHandler.EventIn_SetPanel.Invoke(PanelsHandler.PanelType.StartScreen);
         }
     }
