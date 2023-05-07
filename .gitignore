@@ -58,3 +58,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Remove Firebase - some files are too big for GitHub. Just install Firebase when you check out the project again (install: FirebaseDatabase.unitypackage, FirebaseAuth.unitypackage, FirebaseStorage.unitypackage 07.05.2023)
+[Aa]ssets/Firebase
