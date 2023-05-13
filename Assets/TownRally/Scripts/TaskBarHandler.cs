@@ -20,14 +20,14 @@ namespace TownRally
             this.btnDebug.onClick.AddListener(OnBtnDebug);
             this.tmpUsername.text = string.Empty;
             this.tmpRallyname.text = string.Empty;
-            Settings.EventOut_ValueChanged[Settings.Value.Username].AddListenerSingle(OnUsernameChanged);
-            Settings.EventOut_ValueChanged[Settings.Value.Rally].AddListenerSingle(OnSelectedRallyChanged);
-            Settings.EventOut_ValueChanged[Settings.Value.CurrentPanel].AddListenerSingle(OnCurrentPanelChanged);
+            PanelLogin.EventOut_UsernameChanged.AddListenerSingle(OnUsernameChanged);
+            RalliesHandler.EventOut_StationsLoadingDone.AddListenerSingle(OnSelectedRallyChanged);
+            PanelsHandler.EventOut_OnPanelChanged.AddListenerSingle(OnCurrentPanelChanged);
         }
 
-        private void OnUsernameChanged()
+        private void OnUsernameChanged(string username)
         {
-            this.tmpUsername.text = PanelLogin.VarOut_GetUsername();
+            this.tmpUsername.text = username;
         }
 
         private void OnSelectedRallyChanged()
@@ -35,14 +35,13 @@ namespace TownRally
             this.tmpRallyname.text = RalliesHandler.VarOut_CurrentRally().Name;
         }
 
-        private void OnCurrentPanelChanged()
+        private void OnCurrentPanelChanged(PanelsHandler.PanelType panelType)
         {
-            PanelsHandler.PanelType type = PanelsHandler.VarOut_CurrentPanel;
             this.btnBack.gameObject.SetActive(
-                !type.Equals(PanelsHandler.PanelType.Loading) &&
-                !type.Equals(PanelsHandler.PanelType.Login) &&
-                !type.Equals(PanelsHandler.PanelType.Rally) &&
-                !type.Equals(PanelsHandler.PanelType.None));
+                !panelType.Equals(PanelsHandler.PanelType.Loading) &&
+                !panelType.Equals(PanelsHandler.PanelType.Login) &&
+                !panelType.Equals(PanelsHandler.PanelType.Rally) &&
+                !panelType.Equals(PanelsHandler.PanelType.None));
         }
 
         private void OnBtnBack()
@@ -52,6 +51,11 @@ namespace TownRally
 
         private void OnBtnDebug()
         {
+            //RallyCreator.EventIn_AddNewRallyToServer.Invoke(RallyCreator.NewRallyType.RallyGrazSchlossberg);
+            //RallyCreator.EventIn_AddNewRallyToServer.Invoke(RallyCreator.NewRallyType.RallyGrazMur);
+            //RallyCreator.EventIn_AddNewRallyToServer.Invoke(RallyCreator.NewRallyType.RallyOedWald);
+
+
             //Settings.IsDebugModeOn = !Settings.IsDebugModeOn;
             //this.imgDebugActive.gameObject.SetActive(Settings.IsDebugModeOn);
             //EventOut_OnBtnDebug.Invoke();

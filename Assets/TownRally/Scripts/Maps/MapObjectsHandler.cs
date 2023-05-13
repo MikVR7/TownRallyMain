@@ -1,6 +1,5 @@
 using GeoCoordinatePortable;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace TownRally
@@ -35,11 +34,18 @@ namespace TownRally
             EventIn_SetMapObjectPosition.AddListenerSingle(SetMapObjectPosition);
             this.onlineMapsMarker3DManager = onlineMapsMarker3DManager;
 
-            
-            this.AddMapObject(Settings.GeoPosHome, MapObject.Type.Character, Settings.MapObjectNameCharMain);
+            RalliesHandler.EventOut_StationsLoadingDone.AddListenerSingle(StationsLoadingDone);
+
+            //this.AddMapObject(Settings.GeoPosHome, MapObject.Type.Character, Settings.MapObjectNameCharMain);
             /*this.AddMapObject(GlobalConfig.GeoPosKarmeliterplatz, MapObject.Type.GotoDestination, GlobalConfig.MapObjectNameStationSuffix + "1");
             this.AddMapObject(GlobalConfig.GeoPosUhrturm, MapObject.Type.GotoDestination, GlobalConfig.MapObjectNameStationSuffix + "2");
             */
+        }
+
+        private void StationsLoadingDone()
+        {
+            GeoCoordinate rallyCoordinates = new GeoCoordinate(RalliesHandler.VarOut_CurrentRally().Pos.Key, RalliesHandler.VarOut_CurrentRally().Pos.Value);
+            AddMapObject(rallyCoordinates, MapObject.Type.RallyMarker, "rally_" + RalliesHandler.VarOut_CurrentRally().Name);
         }
 
         private void AddMapObject(GeoCoordinate geoCoord, MapObject.Type objectType, string id)

@@ -9,10 +9,11 @@ namespace TownRally
     {
         internal enum Type
         {
-            Character = 0,
-            GotoDestination = 1,
-            Waypoint = 2,
-            DestinationCheck = 3,
+            RallyMarker = 0,
+            Character = 1,
+            GotoDestination = 2,
+            Waypoint = 3,
+            DestinationCheck = 4,
         }
 
         [SerializeField] private MeshFilter meshFilter = null;
@@ -25,7 +26,7 @@ namespace TownRally
         private OnlineMapsMarker3D marker = null;
         private string id = string.Empty;
         //private Transform myTransform = null;
-        private GeoCoordinate geoCoordinate = new GeoCoordinate();
+        [SerializeField] private GeoCoordinate geoCoordinate = new GeoCoordinate();
 
         internal Type VarOut_ObjectType { get; private set; }
 

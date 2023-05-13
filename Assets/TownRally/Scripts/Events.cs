@@ -1,5 +1,4 @@
 using CodeEvents;
-using Firebase.Database;
 using GeoCoordinatePortable;
 using System;
 using System.Collections.Generic;
@@ -21,6 +20,7 @@ namespace TownRally
     // PanelsHandlerBody.cs
     internal class EventIn_OnBtnPanelBack : EventSystem { }
     internal class EventIn_SetPanel : EventSystem<PanelsHandler.PanelType> { }
+    internal class EventOut_OnPanelChanged : EventSystem<PanelsHandler.PanelType> { }
 
     // RalliesHandler.cs
     //internal class EventIn_SetCurrentRally : EventSystem<int> { }
@@ -55,10 +55,11 @@ namespace TownRally
     internal class EventIn_SetMapObjectPosition : EventSystem<GeoCoordinate, string> { }
 
     // DatabaseHandler.cs
-    internal class EventIn_SaveRallyWhole : EventSystem<string, Rally, Dictionary<string, Station>, Dictionary<string, Task>> { }
+    internal class EventIn_SaveRallyWhole : EventSystem<string, Rally, Dictionary<string, Station>, Dictionary<string, RallyTask>> { }
+    internal class EventIn_TestDB : EventSystem { }
     internal class EventInOut_LoadDBRalliesAll : EventSystem<Action<Dictionary<string, Rally>>> { }
     internal class EventInOut_LoadDBRallyStations : EventSystem<string, Action<Dictionary<string, Station>>> { }
-    internal class EventInOut_LoadDBRallyStationTasks : EventSystem<string, int, Action<Dictionary<string, Task>>> { }
+    internal class EventInOut_LoadDBRallyStationTasks : EventSystem<string, int, Action<Dictionary<string, RallyTask>>> { }
     internal class EventIn_SaveImage : EventSystem<string, Texture2D> { }
     internal class EventInOut_LoadImage : EventSystem<string, Action<Texture2D>> { }
 
@@ -67,4 +68,7 @@ namespace TownRally
     //internal class EventOut_SettingsChangedInt : EventSystem<int> { }
     //internal class EventOut_SettingsChangedBool : EventSystem<bool> { }
     internal class EventOut_ValueChangedEvent : EventSystem { }
+
+    // PanelLogin.cs
+    internal class EventOut_UsernameChanged : EventSystem<string> { }
 }

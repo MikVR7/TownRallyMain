@@ -7,7 +7,7 @@ namespace TownRally
     internal class PanelLogin : APanel
     {
         private static PanelLogin Instance = null;
-        internal static string VarOut_GetUsername() { return Instance.inputName.text; }
+        internal static EventOut_UsernameChanged EventOut_UsernameChanged = new EventOut_UsernameChanged();
 
         [SerializeField] private Button btnContinue = null;
         [SerializeField] private TMP_InputField inputName = null;
@@ -28,7 +28,7 @@ namespace TownRally
 
         private void OnBtnContinue()
         {
-            Settings.EventOut_ValueChanged[Settings.Value.Username].Invoke();
+            EventOut_UsernameChanged.Invoke(this.inputName.text);
             PanelsHandler.EventIn_SetPanel.Invoke(PanelsHandler.PanelType.RallySelection);
         }
     }

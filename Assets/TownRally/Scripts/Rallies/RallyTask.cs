@@ -3,7 +3,7 @@ using static TownRally.Rally;
 
 namespace TownRally
 {
-    public struct Task
+    public struct RallyTask
     {
         public enum Type
         {

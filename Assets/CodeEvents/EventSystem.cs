@@ -8,163 +8,7 @@ using System.Threading.Tasks;
 namespace CodeEvents
 {
 
-    public class AbstractEventSystem
-    {
-        //#if UNITY_EDITOR
-        //        protected StackTrace stackTrace = new StackTrace();
-        //        protected string eventName = "";
-
-        //        public AbstractEventSystem()
-        //        {
-        //            if (udpEventsCommunicator == null) {
-        //                udpEventsCommunicator = new UDPEventsCommunicator();
-        //                udpEventsCommunicator.Init();
-        //            }
-        //            this.stackTrace = new StackTrace();
-        //            this.eventName = udpEventsCommunicator.EventCreated(this.stackTrace.GetFrame(3).GetMethod());
-        //        }
-        //#endif
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //public class EventSystem
-    //{
-    //    private event Action eventListeners;
-
-    //    public void AddListener(Action listener)
-    //    {
-    //        eventListeners += listener;
-    //    }
-
-    //    public void AddListenerSingle(Action listener)
-    //    {
-    //        if (!HasListener(listener))
-    //        {
-    //            eventListeners += listener;
-    //        }
-    //    }
-
-    //    public void RemoveListener(Action listener)
-    //    {
-    //        eventListeners -= listener;
-    //    }
-
-    //    public void RemoveAllListeners()
-    //    {
-    //        eventListeners = null;
-    //    }
-
-    //    public bool HasListeners()
-    //    {
-    //        return eventListeners != null;
-    //    }
-
-    //    public int GetCountListeners()
-    //    {
-    //        return eventListeners.GetInvocationList().Length;
-    //    }
-
-    //    public void Invoke()
-    //    {
-    //        eventListeners?.Invoke();
-    //    }
-
-    //    public T Invoke<T>()
-    //    {
-    //        if (eventListeners == null)
-    //        {
-    //            return default;
-    //        }
-
-    //        var result = default(T);
-    //        var listeners = eventListeners.GetInvocationList();
-    //        foreach (Func<T> listener in listeners)
-    //        {
-    //            result = listener();
-    //        }
-    //        return result;
-    //    }
-
-    //    public bool HasListener(Action listener)
-    //    {
-    //        return eventListeners?.GetInvocationList().Contains(listener) ?? false;
-    //    }
-    //}
-
-
-
-
-
-
-
-
-
-    //////public class EventSystem
-    //////{
-    //////    private event Action eventListeners;
-    //////    private object listLock = new object();
-
-    //////    public void AddListener(Action listener)
-    //////    {
-    //////        lock (listLock)
-    //////        {
-    //////            eventListeners += listener;
-    //////        }
-    //////    }
-
-    //////    public void RemoveListener(Action listener)
-    //////    {
-    //////        lock (listLock)
-    //////        {
-    //////            eventListeners -= listener;
-    //////        }
-    //////    }
-
-    //////    public void RemoveAllListeners()
-    //////    {
-    //////        lock (listLock)
-    //////        {
-    //////            eventListeners = null;
-    //////        }
-    //////    }
-
-    //////    public bool HasListeners()
-    //////    {
-    //////        lock (listLock)
-    //////        {
-    //////            return eventListeners != null;
-    //////        }
-    //////    }
-
-    //////    public void Invoke()
-    //////    {
-    //////        eventListeners?.Invoke();
-    //////    }
-    //////}
-
-
-    //internal static class EventSystemController
-    //{
-    //    internal static List<EventSystem> VarOut_EventSystems = new List<EventSystem>();
-    //}
-
-
-
-
+    public class AbstractEventSystem {}
 
     internal static class EventSystemController
     {
@@ -175,8 +19,6 @@ namespace CodeEvents
             if (!VarOut_EventSystems.Contains(eventSystem))
             {
                 VarOut_EventSystems.Add(eventSystem);
-
-                //EventSystemCombiner.eventSystems.AddRange((IEnumerable<EventSystem>)VarOut_EventSystems);
             }
         }
     }
@@ -190,8 +32,6 @@ namespace CodeEvents
             if (!VarOut_EventSystemsT1.Contains(eventSystem))
             {
                 VarOut_EventSystemsT1.Add(eventSystem);
-
-                //EventSystemCombiner.eventSystems.AddRange((IEnumerable<EventSystem>)VarOut_EventSystemsT1);
             }
         }
     }
@@ -248,35 +88,17 @@ namespace CodeEvents
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     public class EventSystem : AbstractEventSystem
     {
         public EventSystem()
         {
             EventSystemController.AddEventSystem(this);
-            //EventSystemController.VarOut_EventSystems.AddRange((IEnumerable<EventSystem>)this);
         }
 
-        //private bool test = false;
         private List<Action> actions = new List<Action>();
         public void AddListener(Action action)
         {
             actions.Add(action);
-            //#if UNITY_EDITOR
-            //            this.stackTrace = new StackTrace();
-            //            udpEventsCommunicator.OnListenerAdded(eventName, action, this.stackTrace.GetFrame(1));
-            //#endif
         }
 
         // TODO: test if that works on scene change too!
@@ -289,10 +111,6 @@ namespace CodeEvents
         {
             if (actions.Contains(action))
             {
-                //#if UNITY_EDITOR
-                //                this.stackTrace = new StackTrace();
-                //                udpEventsCommunicator.OnListenerRemoved(eventName, action, this.stackTrace.GetFrame(1));
-                //#endif
                 actions.Remove(action);
             }
         }
@@ -330,7 +148,6 @@ namespace CodeEvents
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     public class EventSystem<T1> : AbstractEventSystem
     {
         private List<Action<T1>> actions = new List<Action<T1>>();
@@ -338,16 +155,11 @@ namespace CodeEvents
         public EventSystem()
         {
             EventSystemController<T1>.AddEventSystem(this);
-            //EventSystemController.VarOut_EventSystems.AddRange((IEnumerable<EventSystem>)this);
         }
 
         public void AddListener(Action<T1> action)
         {
             actions.Add(action);
-            //#if UNITY_EDITOR
-            //            this.stackTrace = new StackTrace();
-            //            udpEventsCommunicator.OnListenerAdded(eventName, action, this.stackTrace.GetFrame(1));
-            //#endif
         }
 
         public void AddListenerSingle(Action<T1> action)
@@ -359,10 +171,6 @@ namespace CodeEvents
         {
             if (actions.Contains(action))
             {
-                //#if UNITY_EDITOR
-                //                this.stackTrace = new StackTrace();
-                //                udpEventsCommunicator.OnListenerRemoved(eventName, action, this.stackTrace.GetFrame(1));
-                //#endif
                 actions.Remove(action);
             }
         }
@@ -398,7 +206,6 @@ namespace CodeEvents
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     public class EventSystem<T1, T2> : AbstractEventSystem
     {
         private List<Action<T1, T2>> actions = new List<Action<T1, T2>>();
@@ -406,16 +213,11 @@ namespace CodeEvents
         public EventSystem()
         {
             EventSystemController<T1, T2>.AddEventSystem(this);
-            //EventSystemController.VarOut_EventSystems.AddRange((IEnumerable<EventSystem>)this);
         }
 
         public void AddListener(Action<T1, T2> action)
         {
             actions.Add(action);
-            //#if UNITY_EDITOR
-            //            this.stackTrace = new StackTrace();
-            //            udpEventsCommunicator.OnListenerAdded(eventName, action, this.stackTrace.GetFrame(1));
-            //#endif
         }
 
         public void AddListenerSingle(Action<T1, T2> action)
@@ -427,10 +229,6 @@ namespace CodeEvents
         {
             if (actions.Contains(action))
             {
-                //#if UNITY_EDITOR
-                //                this.stackTrace = new StackTrace();
-                //                udpEventsCommunicator.OnListenerRemoved(eventName, action, this.stackTrace.GetFrame(1));
-                //#endif
                 actions.Remove(action);
             }
         }
@@ -467,7 +265,6 @@ namespace CodeEvents
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     public class EventSystem<T1, T2, T3> : AbstractEventSystem
     {
         private List<Action<T1, T2, T3>> actions = new List<Action<T1, T2, T3>>();
@@ -475,16 +272,11 @@ namespace CodeEvents
         public EventSystem()
         {
             EventSystemController<T1, T2, T3>.AddEventSystem(this);
-            //EventSystemController.VarOut_EventSystems.AddRange((IEnumerable<EventSystem>)this);
         }
 
         public void AddListener(Action<T1, T2, T3> action)
         {
             actions.Add(action);
-            //#if UNITY_EDITOR
-            //            this.stackTrace = new StackTrace();
-            //            udpEventsCommunicator.OnListenerAdded(eventName, action, this.stackTrace.GetFrame(1));
-            //#endif
         }
 
         public void AddListenerSingle(Action<T1, T2, T3> action)
@@ -496,10 +288,6 @@ namespace CodeEvents
         {
             if (actions.Contains(action))
             {
-                //#if UNITY_EDITOR
-                //                this.stackTrace = new StackTrace();
-                //                udpEventsCommunicator.OnListenerRemoved(eventName, action, this.stackTrace.GetFrame(1));
-                //#endif
                 actions.Remove(action);
             }
         }
@@ -536,7 +324,6 @@ namespace CodeEvents
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     public class EventSystem<T1, T2, T3, T4> : AbstractEventSystem
     {
         private List<Action<T1, T2, T3, T4>> actions = new List<Action<T1, T2, T3, T4>>();
@@ -544,16 +331,11 @@ namespace CodeEvents
         public EventSystem()
         {
             EventSystemController<T1, T2, T3, T4>.AddEventSystem(this);
-            //EventSystemController.VarOut_EventSystems.AddRange((IEnumerable<EventSystem>)this);
         }
 
         public void AddListener(Action<T1, T2, T3, T4> action)
         {
             actions.Add(action);
-            //#if UNITY_EDITOR
-            //            this.stackTrace = new StackTrace();
-            //            udpEventsCommunicator.OnListenerAdded(eventName, action, this.stackTrace.GetFrame(1));
-            //#endif
         }
 
         public void AddListenerSingle(Action<T1, T2, T3, T4> action)
@@ -565,10 +347,6 @@ namespace CodeEvents
         {
             if (actions.Contains(action))
             {
-                //#if UNITY_EDITOR
-                //                this.stackTrace = new StackTrace();
-                //                udpEventsCommunicator.OnListenerRemoved(eventName, action, this.stackTrace.GetFrame(1));
-                //#endif
                 actions.Remove(action);
             }
         }
@@ -604,11 +382,7 @@ namespace CodeEvents
         }
     }
 
-
-
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     public class EventSystem<T1, T2, T3, T4, T5> : AbstractEventSystem
     {
         private List<Action<T1, T2, T3, T4, T5>> actions = new List<Action<T1, T2, T3, T4, T5>>();
@@ -616,16 +390,11 @@ namespace CodeEvents
         public EventSystem()
         {
             EventSystemController<T1, T2, T3, T4, T5>.AddEventSystem(this);
-            //EventSystemController.VarOut_EventSystems.AddRange((IEnumerable<EventSystem>)this);
         }
 
         public void AddListener(Action<T1, T2, T3, T4, T5> action)
         {
             actions.Add(action);
-            //#if UNITY_EDITOR
-            //            this.stackTrace = new StackTrace();
-            //            udpEventsCommunicator.OnListenerAdded(eventName, action, this.stackTrace.GetFrame(1));
-            //#endif
         }
 
         public void AddListenerSingle(Action<T1, T2, T3, T4, T5> action)
@@ -637,10 +406,6 @@ namespace CodeEvents
         {
             if (actions.Contains(action))
             {
-                //#if UNITY_EDITOR
-                //                this.stackTrace = new StackTrace();
-                //                udpEventsCommunicator.OnListenerRemoved(eventName, action, this.stackTrace.GetFrame(1));
-                //#endif
                 actions.Remove(action);
             }
         }
@@ -675,6 +440,5 @@ namespace CodeEvents
             return this.actions.Count;
         }
     }
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

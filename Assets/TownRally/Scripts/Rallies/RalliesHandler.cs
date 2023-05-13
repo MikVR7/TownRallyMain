@@ -13,18 +13,15 @@ namespace TownRally
         internal static EventOut_TasksLoadingDone EventOut_TasksLoadingDone = new EventOut_TasksLoadingDone();
 
         internal static readonly string NO_RALLY = "no_rally_running_243546";
-        //internal static EventIn_SetCurrentRally EventIn_SetCurrentRally = new EventIn_SetCurrentRally();
-        //internal static EventIn_CurrentTaskFinished EventIn_CurrentTaskFinished = new EventIn_CurrentTaskFinished();
-        //internal static EventOut_RallyStationTaskChanged EventOut_RallyStationTaskChanged = new EventOut_RallyStationTaskChanged();
-
+        
         private Dictionary<string, Rally> rallies { get; set; } = new Dictionary<string, Rally>();
         private Dictionary<string, Station> stations { get; set; } = new Dictionary<string, Station> { };
-        private Dictionary<string, Task> tasks { get; set; } = new Dictionary<string, Task>();
+        private Dictionary<string, RallyTask> tasks { get; set; } = new Dictionary<string, RallyTask>();
         private RallyCreator rallyCreator = new RallyCreator();
 
         internal static Dictionary<string, Rally> VarOut_GetRallies() { return Instance.rallies; }
         internal static Dictionary<string, Station> VarOut_GetStations() { return Instance.stations; }
-        internal static Dictionary<string, Task> VarOut_GetTasks() { return Instance.tasks; }
+        internal static Dictionary<string, RallyTask> VarOut_GetTasks() { return Instance.tasks; }
         internal static Rally VarOut_GetRallyByID(string rallyID) { return Instance.rallies[rallyID]; }
         internal static string VarOut_GetIDByRally(Rally rally) {
             foreach (string key in Instance.rallies.Keys)
@@ -53,7 +50,7 @@ namespace TownRally
                 Instance.currentRallyID, "_",
                 Instance.currentStationIndex.ToString())];
         }
-        internal static Task VarOut_CurrentTask()
+        internal static RallyTask VarOut_CurrentTask()
         {
             return Instance.tasks[string.Concat(
                 Instance.currentRallyID, "_",
@@ -67,14 +64,10 @@ namespace TownRally
             this.rallyCreator.Init();
             EventIn_LoadRalliesList.AddListenerSingle(LoadRalliesList);
             EventIn_SetCurrentRally.AddListenerSingle(SetCurrentRally);
-            //EventIn_SetCurrentRally.AddListenerSingle(SetCurrentRally);
         }
 
-        //private Action responseLoadingRalliesDone = null;
-        private void LoadRalliesList(/*Action response*/)
+        private void LoadRalliesList()
         {
-            //this.responseLoadingRalliesDone = response;
-            Debug.Log("LOAD RALLIES LIST!");
             DatabaseHandler.EventInOut_LoadDBRalliesAll.Invoke(OnLoadingRalliesDone);
         }
 
@@ -82,9 +75,6 @@ namespace TownRally
         {
             this.rallies = response;
             EventOut_RalliesLoadingDone.Invoke();
-            Debug.Log("LOADING RALLIES LIST DONE!");
-            //this.responseLoadingRalliesDone.Invoke();
-
         }
         
         private void LoadStations()
@@ -103,7 +93,7 @@ namespace TownRally
             DatabaseHandler.EventInOut_LoadDBRallyStationTasks.Invoke(this.currentRallyID, this.currentStationIndex, OnLoadingTasksDone);
         }
 
-        private void OnLoadingTasksDone(Dictionary<string, Task> response)
+        private void OnLoadingTasksDone(Dictionary<string, RallyTask> response)
         {
             this.tasks = response;
             EventOut_TasksLoadingDone.Invoke();
@@ -130,7 +120,6 @@ namespace TownRally
         private void SetCurrentRally(string rallyID)
         {
             this.currentRallyID = rallyID;
-            Settings.EventOut_ValueChanged[Settings.Value.Rally].Invoke();
             LoadStations();
             //DatabaseHandler.EventInOut_LoadDBData.Invoke(
             //        DatabaseHandler.PATH_RALLIES_ROOT + DatabaseHandler.PATH_RALLIES_STATIONS,

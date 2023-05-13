@@ -23,20 +23,20 @@ namespace TownRally
         internal static bool IsDebugModeOn { get; set; } = false;
 
         
-        internal enum Value
-        {
-            Username = 0,
-            Rally = 1,
-            CurrentPanel = 2,
-        }
-        internal static Dictionary<Value, EventOut_ValueChangedEvent> EventOut_ValueChanged = new Dictionary<Value, EventOut_ValueChangedEvent>();
+        //internal enum Value
+        //{
+        //    Username = 0,
+        //    Rally = 1,
+        //    CurrentPanel = 2,
+        //}
+        //internal static Dictionary<Value, EventOut_ValueChangedEvent> EventOut_ValueChanged = new Dictionary<Value, EventOut_ValueChangedEvent>();
 
-        internal static void Init()
-        {
-            EventOut_ValueChanged.Clear();
-            foreach (Value value in Enum.GetValues(typeof(Value))) {
-                EventOut_ValueChanged.Add(value, new EventOut_ValueChangedEvent());
-            }
-        }
+        //internal static void Init()
+        //{
+        //    EventOut_ValueChanged.Clear();
+        //    foreach (Value value in Enum.GetValues(typeof(Value))) {
+        //        EventOut_ValueChanged.Add(value, new EventOut_ValueChangedEvent());
+        //    }
+        //}
     }
 }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace TownRally
 {
     public struct Rally
@@ -18,5 +20,6 @@ namespace TownRally
         public string Name { get; set; }
         public string Caption { get; set; }
         public Description[] Descr { get; set; }
+        public KeyValuePair<float, float> Pos { get; set; }
     }
 }

@@ -4268,6 +4268,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &515579754
 GameObject:
   m_ObjectHideFlags: 0
@@ -5080,6 +5081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 641837946}
   - component: {fileID: 641837947}
+  - component: {fileID: 641837948}
   m_Layer: 0
   m_Name: townrally
   m_TagString: Untagged
@@ -5122,6 +5124,19 @@ MonoBehaviour:
   mapsHandler: {fileID: 950384133}
   camerasHandler: {fileID: 168620688}
   overlaysHandler: {fileID: 2120856618}
+  databaseHandler: {fileID: 641837948}
+--- !u!114 &641837948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641837945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e75ad8697193243a12363a68ec4247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &659187682
 GameObject:
   m_ObjectHideFlags: 0
@@ -9638,11 +9653,11 @@ MonoBehaviour:
     SerializationNodes:
     - Name: rallyTasks
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[TownRally.Task+Type, assembly_townrally],[TownRally.ARallyTask,
-        assembly_townrally]], mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[TownRally.RallyTask+Type,
+        assembly_townrally],[TownRally.ARallyTask, assembly_townrally]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[TownRally.Task+Type,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[TownRally.RallyTask+Type,
         assembly_townrally]], mscorlib
     - Name: 
       Entry: 12

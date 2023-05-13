@@ -1,4 +1,3 @@
-using Sirenix.Utilities;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,14 +14,11 @@ namespace TownRally
         internal override void Init(PanelsHandler.PanelType panelType)
         {
             base.Init(panelType);
-            //RalliesHandler.EventOut_RallyChanged.AddListenerSingle(UpdateRallyInfo);
             this.scrollviewContent.Init();
-            Settings.EventOut_ValueChanged[Settings.Value.Rally].AddListenerSingle(OnRallyChanged);
-            //Settings.EventOut_SettingsChangedStr[Settings.ValStr.RallyID].AddListenerSingle(OnRallyChanged);
+            RalliesHandler.EventOut_StationsLoadingDone.AddListenerSingle(OnStationsLoadingDone);
         }
 
-        //private void UpdateRallyInfo(Rally rally)
-        private void OnRallyChanged()
+        private void OnStationsLoadingDone()
         {
             Rally rally = RalliesHandler.VarOut_CurrentRally();
             if(rally.Name.Equals(RalliesHandler.NO_RALLY)) { return; }

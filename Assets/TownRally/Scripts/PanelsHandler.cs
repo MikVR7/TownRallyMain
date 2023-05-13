@@ -21,11 +21,12 @@ namespace TownRally
 
         internal static EventIn_OnBtnPanelBack EventIn_OnBtnPanelBack = new EventIn_OnBtnPanelBack();
         internal static EventIn_SetPanel EventIn_SetPanel = new EventIn_SetPanel();
+        internal static EventOut_OnPanelChanged EventOut_OnPanelChanged = new EventOut_OnPanelChanged();
 
         [SerializeField] private Dictionary<PanelType, APanel> panels = new Dictionary<PanelType, APanel>();
 
         private List<PanelType> panelQueue = new List<PanelType>();
-        internal static PanelType VarOut_CurrentPanel { get; set; } = PanelType.None;
+        private PanelType currentPanel = PanelType.None;
 
         internal void Init()
         {
@@ -49,15 +50,15 @@ namespace TownRally
 
         private void SetPanel(PanelType nextPanel)
         {
-            VarOut_CurrentPanel = nextPanel;
-            Settings.EventOut_ValueChanged[Settings.Value.CurrentPanel].Invoke();
-
-            if (!VarOut_CurrentPanel.Equals(PanelType.Loading))
+            this.currentPanel = nextPanel;
+            
+            if (!currentPanel.Equals(PanelType.Loading))
             {
                 AddPanelToPanelQueue(nextPanel);
             }
             this.panels.Keys.ForEach(i => this.panels[i].SetActive(nextPanel.Equals(i)));
             bool isActiveBtnBack = (this.panelQueue.Count > 1) && (nextPanel != PanelType.Rally);
+            EventOut_OnPanelChanged.Invoke(this.currentPanel);
         }
 
         private void AddPanelToPanelQueue(PanelType nextPanel)

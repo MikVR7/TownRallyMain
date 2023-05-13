@@ -5,23 +5,33 @@ namespace TownRally
 {
     internal class UIElementInfoPicture : AUIElement
     {
-        //internal override EType ElementType => AUIElement.EType.Picture;
-
-        private RawImage image = null;
+        [SerializeField] private RawImage image = null;
         private Texture texture = null;
+        private Material material = null;
 
-        //internal override void Init(int elementIndex, Rally.DescriptionType descriptionType, Rally.Description elementData)
         internal override void Init(int elementIndex, Rally.DescriptionType descriptionType, string elementData)
         {
             base.Init(elementIndex, descriptionType, elementData);
-            this.image = this.GetComponent<RawImage>();
             this.SetTexture(this.descriptionData);
         }
 
         private void SetTexture(string path)
         {
-            path = path.Replace(".jpg", string.Empty).Replace(".png", string.Empty);
-            this.texture = Resources.Load<Texture>(path);
+            Debug.Log("SET TEXTURE!)");
+            this.material = new Material(Shader.Find("UI/Unlit/Detail"));
+            //path = path.Replace(".jpg", string.Empty).Replace(".png", string.Empty);
+            //Debug.Log("RESOURCES: " + path);
+            //this.texture = Resources.Load<Texture>(path);
+            //this.image.texture = this.texture;
+            this.image.material = this.material;
+            DatabaseHandler.EventInOut_LoadImage.Invoke(path, OnLoadedImage);
+            Debug.Log("IMAGE SET AS TEXTURE!");
+        }
+
+        private void OnLoadedImage(Texture2D texture)
+        {
+            Debug.Log("DONE LOADING!");
+            this.texture = texture;
             this.image.texture = this.texture;
         }
     }

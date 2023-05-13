@@ -1,3 +1,5 @@
+using GeoCoordinatePortable;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +20,8 @@ namespace TownRally
 
         private void OnBtnDebug()
         {
-
+            GeoCoordinate coordinates = new GeoCoordinate(47.075864f, 15.437085f);
+            MapObjectsHandler.EventIn_AddMapObject.Invoke(coordinates, MapObject.Type.RallyMarker, "test1");
         }
     }
 }
